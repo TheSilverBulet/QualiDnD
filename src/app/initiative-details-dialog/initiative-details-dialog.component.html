@@ -1,0 +1,26 @@
+<div *ngIf="this.isNPC" style="text-align: left;">
+    <br />
+    <span><b>{{this.selectedMonster.commonName}}</b></span><br />
+    <span [innerHtml]='this.describeSizeTypeAlignment(this.selectedMonster) | safeHtml'></span><br />
+    <p>
+        <span><b>Armor Class:</b> {{this.selectedMonster.armorClass}}</span><br />
+        <span><b>Health:</b> {{this.selectedMonster.health}}</span><br />
+        <span><b>Speed:</b> {{this.selectedMonster.speed}}</span><br />
+        <span [innerHtml]='this.describeCRAndExpVal(this.selectedMonster) | safeHtml'></span><br />
+    </p>
+    <p [innerHtml]='this.describeAllAbilities(this.selectedMonster) | safeHtml'></p>
+    <p [innerHtml]='this.describeInateAbilities(this.selectedMonster) | safeHtml'></p>
+    <p [innerHtml]='this.describeFeatures(this.selectedMonster) | safeHtml'></p>
+    <p [innerHtml]='this.describeActions(this.selectedMonster) | safeHtml'></p>
+</div>
+<div *ngIf="!this.isNPC" style="text-align: left;">
+    <br />
+    <span><b>Name:</b> {{this.selectedCreature.name}}</span><br />
+    <span><b>Owner:</b> {{this.selectedCreature.owner}}</span><br />
+    <p>
+        <span><b>Armor Class:</b> {{this.selectedCreature.baseArmorClass}}</span><br />
+        <span><b>Health:</b> {{this.selectedCreature.currentHealth}} / {{this.selectedCreature.maxHealth}}</span><br />
+        <span><b>Race:</b> {{this.selectedCreature.race}}</span>
+    </p>
+    <p [innerHtml]='this.describeAllAbilities(this.selectedCreature) | safeHtml'></p>
+</div>

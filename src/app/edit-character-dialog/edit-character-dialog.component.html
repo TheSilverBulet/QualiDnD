@@ -1,0 +1,114 @@
+<h2 style="text-align: center; margin-left: auto; margin-right: auto;">Character Creation</h2>
+<div style="text-align: center; margin-left: auto; margin-right: auto;">
+    <mat-dialog-content>
+        <form>
+            <mat-form-field>
+                <input matInput readonly name="CharacterName" placeholder="Character Name" [(ngModel)]='character.name'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <mat-label>Race</mat-label>
+                <mat-select [(ngModel)]="character.race" name="race">
+                    <mat-option *ngFor="let race of races" [value]="race.value">
+                        {{ race.key }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><br />
+            <mat-form-field appearance="fill">
+                <mat-label>Classes</mat-label>
+                <mat-select [formControl]="classes" multiple>
+                    <mat-option *ngFor="let class of classList" [value]="class.value">{{class.key}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <input matInput name="Level" placeholder="Level" [(ngModel)]='character.level'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="MaxHealth" placeholder="Max Health" [(ngModel)]='character.maxHealth'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="CurrentHealth" placeholder="Current Health" [(ngModel)]='character.currentHealth'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="TmpHitPoints" placeholder="Temporary Hit Points"
+                    [(ngModel)]='character.temporaryHitPoints'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="Strength" placeholder="Strength" [(ngModel)]='character.strength.abilityScore'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="Dexterity" placeholder="Dexterity" [(ngModel)]='character.dexterity.abilityScore'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="Constitution" placeholder="Constitution"
+                    [(ngModel)]='character.constitution.abilityScore'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="Intelligence" placeholder="Intelligence"
+                    [(ngModel)]='character.intelligence.abilityScore'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="Wisdom" placeholder="Wisdom" [(ngModel)]='character.wisdom.abilityScore'>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="Charisma" placeholder="Charisma" [(ngModel)]='character.charisma.abilityScore'>
+            </mat-form-field><br />
+            <mat-form-field *ngIf="shinobiChosen">
+                <input matInput name="Chakra" placeholder="Chakra" [(ngModel)]='character.chakra'>
+            </mat-form-field><br />
+            <mat-form-field *ngIf="barbarianChosen">
+                <input matInput name="barbarianLevel" placeholder="Barbarian Level" [(ngModel)]="barbarianLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="bardChosen">
+                <input matInput name="bardLevel" placeholder="Bard Level" [(ngModel)]="bardLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="bloodHunterChosen">
+                <input matInput name="bloodhunterLevel" placeholder="Blood Hunter Level" [(ngModel)]="bloodhunterLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="clericChosen">
+                <input matInput name="clericLevel" placeholder="Cleric Level" [(ngModel)]="clericLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="druidChosen">
+                <input matInput name="druidLevel" placeholder="Druid Level" [(ngModel)]="druidLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="fighterChosen">
+                <input matInput name="fighterLevel" placeholder="Fighter Level" [(ngModel)]="fighterLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="gunslingerChosen">
+                <input matInput name="gunslingerLevel" placeholder="Gunslinger Level" [(ngModel)]="gunslingerLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="monkChosen">
+                <input matInput name="monkLevel" placeholder="Monk Level" [(ngModel)]="monkLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="paladinChosen">
+                <input matInput name="paladinLevel" placeholder="Paladin Level" [(ngModel)]="paladinLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="rangerChosen">
+                <input matInput name="rangerLevel" placeholder="Ranger Level" [(ngModel)]="rangerLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="rogueChosen">
+                <input matInput name="rogueLevel" placeholder="Rogue Level" [(ngModel)]="rogueLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="shinobiChosen">
+                <input matInput name="shinobiLevel" placeholder="Shinobi Level" [(ngModel)]="shinobiLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="sorcererChosen">
+                <input matInput name="sorcererLevel" placeholder="Sorcerer Level" [(ngModel)]="sorcererLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="warlockChosen">
+                <input matInput name="warlockLevel" placeholder="Warlock Level" [(ngModel)]="warlockLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="witcherChosen">
+                <input matInput name="witcherLevel" placeholder="Witcher Level" [(ngModel)]="witcherLevel">
+            </mat-form-field><br />
+            <mat-form-field *ngIf="wizardChosen">
+                <input matInput name="wizardLevel" placeholder="Wizard Level" [(ngModel)]="wizardLevel">
+            </mat-form-field><br />
+            <br />
+            <div mat-dialog-actions>
+                <button mat-raised-button color="warn" [matDialogClose]>Close</button>
+                <button mat-raised-button color="primary" (click)="edit()">Update</button>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>

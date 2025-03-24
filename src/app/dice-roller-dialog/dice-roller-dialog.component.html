@@ -1,0 +1,31 @@
+<div>
+    <h2 style="text-align: center;">Dice Roller</h2>
+    <div mat-dialog-content>
+        <form>
+            <mat-form-field>
+                <mat-label>Die Type</mat-label>
+                <mat-select [(ngModel)]="selectedDie" name="dieType">
+                    <mat-option *ngFor="let die of diceTypes" [value]="die.value">
+                        {{ die.key }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><br />
+            <mat-form-field>
+                <input matInput name="NumberOfRolls" placeholder="Number of Rolls" [(ngModel)]='numberRolls'>
+            </mat-form-field><br />
+        </form>
+        <div>
+            <div *ngIf="result">
+                Result: {{ result }}
+            </div>
+            <br />
+            <div *ngIf="rolls">
+                <span *ngFor="let roll of rolls">{{ roll }}, </span>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button color="warn" [matDialogClose]>Close</button>
+        <button mat-button color="primary" (click)="rollDice()">Roll</button>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div>
+    <h3>
+        <span style="font-size: x-large">{{ character.name }}</span><br />
+        <span style="font-size: large;">{{ character.race }}</span><br />
+        <span style="font-size: large;" *ngFor="let class of character.characterClass">{{ class.className }}:
+            {{ class.classLevel }} | </span>
+    </h3>
+</div>
+<div mat-dialog-content>
+    <span><strong>Level</strong>: {{ character.level }}</span><br />
+    <span><strong>Unarmored AC</strong>: {{ character.baseArmorClass }}</span><br />
+    <span><strong>Health</strong>:
+        <span>{{ character.currentHealth }}</span>/<span>{{ character.maxHealth }}</span></span><br />
+    <span><strong>Temporary HP</strong>: {{ character.temporaryHitPoints }}</span>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+            <div>
+                <span><b>STR</b>: {{ character.strength.abilityScore }}
+                    ({{ character.strength.abilityModifier }})
+                </span>
+                <br />
+                <span><b>DEX</b>: {{ character.dexterity.abilityScore }}
+                    ({{ character.dexterity.abilityModifier }})
+                </span>
+                <br />
+                <span><b>CON</b>: {{ character.constitution.abilityScore }}
+                    ({{ character.constitution.abilityModifier }})
+                </span>
+                <br />
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div>
+                <span><b>INT</b>: {{ character.intelligence.abilityScore }}
+                    ({{ character.intelligence.abilityModifier }})
+                </span><br />
+                <span><b>WIS</b>: {{ character.wisdom.abilityScore }}
+                    ({{ character.wisdom.abilityModifier }})
+                </span><br />
+                <span><b>CHA</b>: {{ character.charisma.abilityScore }}
+                    ({{ character.charisma.abilityModifier }})
+                </span><br />
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <span><strong>Death Saves</strong>:</span><br />
+    <span style="margin-left: 20px;"><strong>Successes</strong>: {{character.deathSave.Successes}}</span><br />
+    <span style="margin-left: 20px;"><strong>Failures</strong>: {{character.deathSave.Failures}}</span>
+    <mat-expansion-panel *ngIf="isSpellcaster">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <b>Spell Slots</b>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+            <table style="width:100%; text-align: center;">
+                <tr>
+                    <th>Slot Level</th>
+                    <th>Slots Available</th>
+                </tr>
+                <tr *ngFor="let spell of character.spellSlots | keyvalue">
+                    <td>{{spell.key}}</td>
+                    <td>{{spell.value}}</td>
+                </tr>
+            </table>
+    </mat-expansion-panel>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [matDialogClose]>Close</button>
+    <button *ngIf="fromDashboard" mat-button (click)="openEditDialog()">Edit</button>
+</div>
