@@ -1,0 +1,93 @@
+<mat-card class="mat-elevation-z8 offset-1"
+    style="width: 80%; text-align: center; margin-left: auto; margin-right: auto;"
+    *ngIf="isMagical || isShinobi || this.isAdmin">
+    <div *ngIf="this.isAdmin">
+        <button mat-button (click)="setShinobi()">Jutsu</button>
+        <button mat-button (click)="setMagical()">Spell</button>
+        <button mat-button color="warn" (click)="clearSettings()">Clear</button>
+    </div>
+    <mat-card *ngIf="isMagical">
+        <mat-card-title>Spell Search</mat-card-title>
+        <mat-card-content>
+            <mat-form-field appearance="fill">
+                <mat-label>Spells</mat-label>
+                <mat-select [formControl]="spellFormControl" multiple>
+                    <mat-option *ngFor="let spellType of spellList" [value]="spellType.value">{{spellType.key}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="primary" (click)="prepareFilteredSpellList()">Calculate List</button>
+            <br />
+            <div *ngIf="isFiltered">
+                <mat-form-field>
+                    <input matInput placeholder="Spell Name" name="spellName" [matAutocomplete]="spellComplete"
+                        [formControl]="spellControl">
+                    <mat-autocomplete autoActiveFirstOption #spellComplete="matAutocomplete">
+                        <mat-option *ngFor="let spell of filteredSpells | async" (click)="describeSpell(spell)"
+                            [value]="spell.spellName">
+                            {{spell.spellName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <button mat-raised-button color="warn" (click)="resetSpellFilter()">Reset</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <br />
+    <mat-card *ngIf="this.testSelectedSpellValue()">
+        <mat-card-content style="text-align: left;">
+            <div>
+                <span><b>Spell Name:</b> {{this.selectedSpell.spellName}}</span><br />
+                <span>{{this.displayLevelAndSchool()}}</span><br />
+                <span><b>Casting Time:</b> {{this.selectedSpell.castingTime}}</span><br />
+                <span><b>Range:</b> {{this.selectedSpell.range}}</span><br />
+                <span><b>Components:</b> {{this.selectedSpell.components}}</span><br />
+                <span><b>Duration:</b> {{this.selectedSpell.duration}}</span>
+                <p style="white-space: pre-wrap;">{{this.formatDescription(this.selectedSpell.description)}}</p>
+            </div>
+            <button mat-raised-button color="warn" (click)="resetSpell()">Clear Spell Details</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isShinobi">
+        <mat-card-title>Jutsu Search</mat-card-title>
+        <mat-card-content>
+            <mat-form-field appearance="fill">
+                <mat-label>Releases</mat-label>
+                <mat-select [formControl]="releaseFormControl" multiple>
+                    <mat-option *ngFor="let release of releaseList" [value]="release.value">{{release.key}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="primary" (click)="prepareFilteredJutsuList()">Calculate List</button>
+            <br />
+            <div *ngIf="isFiltered">
+                <mat-form-field>
+                    <input matInput placeholder="Jutsu Name" name="jutsuName" [matAutocomplete]="jutsuComplete"
+                        [formControl]="jutsuControl">
+                    <mat-autocomplete autoActiveFirstOption #jutsuComplete="matAutocomplete">
+                        <mat-option *ngFor="let jutsu of filteredJutsu | async" (click)="describeJutsu(jutsu)"
+                            [value]="jutsu.jutsuName">
+                            {{jutsu.jutsuName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <button mat-raised-button color="warn" (click)="resetJutsuFilter()">Reset</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <br />
+    <mat-card *ngIf="this.testSelectedJutsuValue()">
+        <mat-card-content style="text-align: left;">
+            <div>
+                <span><b>Jutsu Name:</b> {{this.selectedJutsu.jutsuName}}</span><br />
+                <span>{{this.displayRankAndRelease()}}</span><br />
+                <span><b>Cost:</b> {{this.selectedJutsu.cost}}</span><br />
+                <span><b>Range:</b> {{this.selectedJutsu.range}}</span><br />
+                <span><b>Duration:</b> {{this.selectedJutsu.duration}}</span>
+                <p style="white-space: pre-wrap;">{{this.formatDescription(this.selectedJutsu.description)}}</p>
+            </div>
+            <button mat-raised-button color="warn" (click)="resetJutsu()">Clear Jutsu Details</button>
+        </mat-card-content>
+    </mat-card>
+</mat-card>

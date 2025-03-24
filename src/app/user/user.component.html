@@ -1,0 +1,115 @@
+<mat-card class="mat-elevation-z8 offset-1"
+    style="width: 80%; text-align: center; margin-left: auto; margin-right: auto;">
+    <mat-card-title>My Account</mat-card-title>
+    <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="400" *ngIf="!isMobile">
+            <mat-grid-tile style="height: auto;">
+                <div>
+                    <h2>Characters</h2>
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="characterName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                            <td mat-cell *matCellDef="let character"
+                                [ngClass]="character.isActive ? 'is-green' : 'is-white'">{{ character.name }}</td>
+                        </ng-container>
+
+                        <!-- Action Column -->
+                        <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                            <td mat-cell *matCellDef="let character"
+                                [ngClass]="character.isActive ? 'is-green' : 'is-white'">
+                                <button mat-icon-button [matMenuTriggerFor]="characterMenu">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <mat-menu #characterMenu="matMenu" yPosition="below">
+                                    <button mat-menu-item *ngIf="!getIsActive(character)"
+                                        (click)="makeActive(character)">Make Active</button>
+                                    <button mat-menu-item (click)="displayCharacter(character)">View Details</button>
+                                    <button mat-menu-item (click)="editCharacterDialog(character)">Edit</button>
+                                    <button mat-menu-item (click)="deleteCharacter(character.name)">Delete</button>
+                                </mat-menu>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <br />
+                    <button mat-raised-button color="primary" (click)="openCharacterCreationDialog()">Create
+                        Character</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile style="height: auto;">
+                <div>
+                    <h2 style="margin-top: 0;">User Info</h2>
+                    <mat-card class="mat-elevation-z8" style="text-align: left;">
+                        <mat-card-content>
+                            <div>
+                                <p><b>Username</b>: {{ userInfo.username }}</p>
+                                <p><b>First Name</b>: {{ userInfo.firstName }}</p>
+                                <p><b>Last Name</b>: {{ userInfo.lastName }}</p>
+                                <p><b>Email</b>: {{ userInfo.email }}</p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <div *ngIf="isMobile">
+            <div>
+                <mat-card class="mat-elevation-z8" style="text-align: left;">
+                    <mat-card-title style="text-align: center;"><b>User Info</b></mat-card-title>
+                    <mat-card-content>
+                        <div>
+                            <p><b>Username</b>: {{ userInfo.username }}</p>
+                            <p><b>First Name</b>: {{ userInfo.firstName }}</p>
+                            <p><b>Last Name</b>: {{ userInfo.lastName }}</p>
+                            <p><b>Email</b>: {{ userInfo.email }}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <br />
+            <div>
+                <mat-card class="mat-elevation-z0">
+                    <mat-card-title style="text-align: center;"><b>Characters</b></mat-card-title>
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 100%;">
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="characterName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                            <td mat-cell *matCellDef="let character"
+                                [ngClass]="character.isActive ? 'is-green' : 'is-white'">{{ character.name }}</td>
+                        </ng-container>
+
+                        <!-- Action Column -->
+                        <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                            <td mat-cell *matCellDef="let character"
+                                [ngClass]="character.isActive ? 'is-green' : 'is-white'">
+                                <button mat-icon-button [matMenuTriggerFor]="characterMenu">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <mat-menu #characterMenu="matMenu" yPosition="below">
+                                    <button mat-menu-item *ngIf="!getIsActive(character)"
+                                        (click)="makeActive(character)">Make Active</button>
+                                    <button mat-menu-item (click)="displayCharacter(character)">View Details</button>
+                                    <button mat-menu-item (click)="editCharacterDialog(character)">Edit</button>
+                                    <button mat-menu-item (click)="deleteCharacter(character.name)">Delete</button>
+                                </mat-menu>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <br />
+                    <button mat-raised-button color="primary" (click)="openCharacterCreationDialog()">Create
+                        Character</button>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
