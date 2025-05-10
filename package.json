@@ -53,7 +53,7 @@
     "eslint": "^9.26.0",
     "globals": "^16.1.0",
     "jasmine-core": "^5.7.1",
-    "jasmine-spec-reporter": "~4.2.1",
+    "jasmine-spec-reporter": "~7.0.0",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
