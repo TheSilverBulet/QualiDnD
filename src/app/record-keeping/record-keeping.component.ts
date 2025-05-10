@@ -1,13 +1,18 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UtilityService } from '../shared/utility.service';
-import { IJutsu, ISpell, Spell, Jutsu, Monster, IAbility, IMonster } from '../shared/models.component';
+import { Spell, Jutsu, Monster, IAbility } from '../shared/models.component';
 import { FormUtilityService } from '../shared/form-utility.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-record-keeping',
   templateUrl: './record-keeping.component.html',
-  styleUrls: ['./record-keeping.component.scss']
+  styleUrls: ['./record-keeping.component.scss'],
+  imports: [MatRadioModule, MatCardModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, FormsModule, ReactiveFormsModule]
 })
 export class RecordKeepingComponent implements OnInit {
 
@@ -258,7 +263,7 @@ export class RecordKeepingComponent implements OnInit {
     return this.selectedDataType === 3;
   }
 
-  newArray(length: number) {
+  newArray() {
     return new Array(9);
   }
 
@@ -331,7 +336,7 @@ export class RecordKeepingComponent implements OnInit {
   }
 
   validateObjectComplete(obj: any) {
-    for (let i in obj) {
+    for (const i in obj) {
       if (!obj[i]) {
         console.log(obj[i]);
         return false;

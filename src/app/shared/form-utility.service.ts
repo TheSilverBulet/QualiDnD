@@ -54,7 +54,7 @@ export class FormUtilityService {
     return wouldBeNumeral !== undefined && wouldBeNumeral !== null ? wouldBeNumeral : 0;
   }
 
-  checkIsNullorUndefined(item: any): boolean {
+  checkIsNullorUndefined(item: unknown): boolean {
     return item === null || item === undefined;
   }
 

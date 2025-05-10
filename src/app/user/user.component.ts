@@ -1,5 +1,4 @@
 import { Component, OnInit, OnChanges, AfterViewInit, ViewChild, SimpleChanges } from '@angular/core';
-import { MatDialog, MatTableDataSource, MatSort } from '@angular/material';
 import { CharacterCreationDialogComponent } from '../character-creation-dialog/character-creation-dialog.component';
 import { ICharacter, IUser } from '../shared/models.component';
 import { CharacterService } from '../shared/character.service';
@@ -7,6 +6,9 @@ import { DashboardCharacterExpandedDialogComponent } from '../dashboard-characte
 import { EditCharacterDialogComponent } from '../edit-character-dialog/edit-character-dialog.component';
 import { AppViewService } from '../shared/app-view.service';
 import { NotificationService } from '../notification.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user',
@@ -47,10 +49,12 @@ export class UserComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   openCharacterCreationDialog(): void {
-    const dialogRef = this.dialog.open(CharacterCreationDialogComponent, {
-      width: '750px',
-      autoFocus: false
-    }).afterClosed().subscribe(() => {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '750px';
+
+    this.dialog.open(CharacterCreationDialogComponent, dialogConfig)
+    .afterClosed().subscribe(() => {
       setTimeout(() => {
         this.fetchList();
       });
@@ -58,11 +62,14 @@ export class UserComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   editCharacterDialog(character: ICharacter): void {
-    const dialogRef = this.dialog.open(EditCharacterDialogComponent, {
-      width: '750px',
-      autoFocus: false,
-      data: { character }
-    }).afterClosed().subscribe(() => {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '750px';
+    dialogConfig.data = {
+      character
+    }
+    this.dialog.open(EditCharacterDialogComponent, dialogConfig)
+    .afterClosed().subscribe(() => {
       setTimeout(() => {
         this.fetchList();
       });
@@ -74,14 +81,14 @@ export class UserComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   displayCharacter(selectedCharacter: ICharacter): void {
-    const dialogRef = this.dialog.open(DashboardCharacterExpandedDialogComponent, {
-      width: '400px',
-      autoFocus: false,
-      data: {
-        character: selectedCharacter,
-        fromDashboard: false
-      }
-    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '400px';
+    dialogConfig.data = {
+      character: selectedCharacter,
+      fromDashboard: false
+    }
+    this.dialog.open(EditCharacterDialogComponent, dialogConfig);
   }
 
   deleteCharacter(characterName: string): void {

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IClass, ClassOption } from '../shared/models.component';
 import { UserService } from '../shared/user.service';
-import { MatSnackBar } from '@angular/material';
 import { AppViewService } from '../shared/app-view.service';
 import { FormControl } from '@angular/forms';
 import { FormUtilityService } from '../shared/form-utility.service';
 import { NotificationService } from '../notification.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registration',

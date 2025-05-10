@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { IAttrUpdate } from '../shared/models.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-attribute-dialog',

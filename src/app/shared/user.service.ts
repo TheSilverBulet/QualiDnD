@@ -11,7 +11,7 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  getUsers(): any {
+  getUsers(): unknown {
     return this.http.get(environment.apiUrl + '/admin/getUsers');
   }
 
@@ -22,26 +22,26 @@ export class UserService {
     return false;
   }
 
-  registerUser(newUser, newCharacter): any {
+  registerUser(newUser, newCharacter): unknown {
     if (newCharacter === null) {
       return this.http.post(environment.apiUrl + '/register', { newUser });
     }
     return this.http.post(environment.apiUrl + '/register', { newUser, newCharacter });
   }
 
-  resetPassword(resetObj): any {
+  resetPassword(resetObj): unknown {
     return this.http.post(environment.apiUrl + '/registration/passwordReset', { resetObj });
   }
 
-  resetUsername(resetObj): any {
+  resetUsername(resetObj): unknown {
     return this.http.post(environment.apiUrl + '/registration/usernameReset', { resetObj });
   }
 
-  getAllUsers(): any {
+  getAllUsers(): unknown {
     return this.http.get(environment.apiUrl + '/getAllUsers');
   }
 
-  deleteUser(user: string): any {
+  deleteUser(user: string): unknown {
     return this.http.post(environment.apiUrl + '/user/delete', { user });
   }
 }

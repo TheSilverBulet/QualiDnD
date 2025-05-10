@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../shared/user.service';
-import { MatSnackBar, MAT_BOTTOM_SHEET_DEFAULT_OPTIONS } from '@angular/material';
 import { NotificationService } from '../notification.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reset-password-dialog',

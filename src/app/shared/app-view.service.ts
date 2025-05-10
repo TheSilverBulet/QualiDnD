@@ -16,7 +16,7 @@ export class AppViewService {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     if (window.innerWidth < 1300) {
       this.isMobileResolution = true;
     } else {

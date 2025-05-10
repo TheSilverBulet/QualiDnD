@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ICharacter, IAbility } from './models.component';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ICharacter } from './models.component';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 const modMap: Map<number, number> =

@@ -89,8 +89,8 @@ export interface ISpellSlot {
 
 export interface IAttrUpdate {
   attributeKey: string;
-  attributeValue: any;
-  creature: any;
+  attributeValue: unknown;
+  creature: unknown;
 }
 
 export interface ISpell {
