@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 import { IUser } from './models.component';
 import { environment } from 'src/environments/environment';
 

@@ -31,7 +31,7 @@
             </mat-grid-tile>
             <mat-grid-tile style="width: 100%; height: auto;">
                 <app-dashboard-character [activeCharacter]="activeCharacter"
-                    (characterEmitter)="fetchCharacter($event)">
+                    (characterEmitter)="fetchCharacter()">
                 </app-dashboard-character>
             </mat-grid-tile>
         </mat-grid-list>
@@ -65,7 +65,7 @@
             </app-initiative-table>
         </div>
         <br />
-        <app-dashboard-character [activeCharacter]="activeCharacter" (characterEmitter)="fetchCharacter($event)">
+        <app-dashboard-character [activeCharacter]="activeCharacter" (characterEmitter)="fetchCharacter()">
         </app-dashboard-character>
     </mat-card-content>
 </mat-card>

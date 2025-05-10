@@ -60,7 +60,7 @@
             <mat-form-field>
                 <mat-label>Spell Level</mat-label>
                 <mat-select [(ngModel)]="spellLevel" name="level">
-                    <mat-option *ngFor="let spell of newArray(10); let i = index" [value]="i">
+                    <mat-option *ngFor="let spell of newArray(); let i = index" [value]="i">
                         {{ i }}
                     </mat-option>
                 </mat-select>
