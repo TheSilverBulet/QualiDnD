@@ -2,17 +2,13 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UtilityService } from '../shared/utility.service';
 import { Spell, Jutsu, Monster, IAbility } from '../shared/models.component';
 import { FormUtilityService } from '../shared/form-utility.service';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-record-keeping',
   templateUrl: './record-keeping.component.html',
   styleUrls: ['./record-keeping.component.scss'],
-  imports: [MatRadioModule, MatCardModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, FormsModule, ReactiveFormsModule]
+  standalone: false
 })
 export class RecordKeepingComponent implements OnInit {
 

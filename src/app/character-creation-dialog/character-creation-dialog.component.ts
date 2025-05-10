@@ -10,7 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-character-creation-dialog',
   templateUrl: './character-creation-dialog.component.html',
-  styleUrls: ['./character-creation-dialog.component.scss']
+  styleUrls: ['./character-creation-dialog.component.scss'],
+  standalone: false
 })
 export class CharacterCreationDialogComponent implements OnInit {
 

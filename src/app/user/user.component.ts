@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges, AfterViewInit, ViewChild, SimpleChanges }
 import { CharacterCreationDialogComponent } from '../character-creation-dialog/character-creation-dialog.component';
 import { ICharacter, IUser } from '../shared/models.component';
 import { CharacterService } from '../shared/character.service';
-import { DashboardCharacterExpandedDialogComponent } from '../dashboard-character-expanded-dialog/dashboard-character-expanded-dialog.component';
 import { EditCharacterDialogComponent } from '../edit-character-dialog/edit-character-dialog.component';
 import { AppViewService } from '../shared/app-view.service';
 import { NotificationService } from '../notification.service';
@@ -13,7 +12,8 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
+  standalone: false
 })
 export class UserComponent implements OnInit, OnChanges, AfterViewInit {
 

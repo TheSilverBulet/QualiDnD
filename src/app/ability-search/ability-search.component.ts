@@ -9,7 +9,8 @@ import { AuthService } from '../authorization/auth.service';
 @Component({
   selector: 'app-ability-search',
   templateUrl: './ability-search.component.html',
-  styleUrls: ['./ability-search.component.scss']
+  styleUrls: ['./ability-search.component.scss'],
+  standalone: false
 })
 export class AbilitySearchComponent implements OnInit {
 

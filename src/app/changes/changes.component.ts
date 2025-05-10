@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-changes',
   templateUrl: './changes.component.html',
-  styleUrls: ['./changes.component.scss']
+  styleUrls: ['./changes.component.scss'],
+  standalone: false
 })
 export class ChangesComponent implements OnInit {
 

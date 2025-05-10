@@ -5,7 +5,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-update-attribute-dialog',
   templateUrl: './update-attribute-dialog.component.html',
-  styleUrls: ['./update-attribute-dialog.component.scss']
+  styleUrls: ['./update-attribute-dialog.component.scss'],
+  standalone: false
 })
 export class UpdateAttributeDialogComponent implements OnInit {
 

@@ -6,7 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-reset-password-dialog',
   templateUrl: './reset-password-dialog.component.html',
-  styleUrls: ['./reset-password-dialog.component.scss']
+  styleUrls: ['./reset-password-dialog.component.scss'],
+  standalone: false
 })
 export class ResetPasswordDialogComponent implements OnInit {
 
@@ -17,7 +18,7 @@ export class ResetPasswordDialogComponent implements OnInit {
   newUsername: string;
   oldUsername: string;
   // tslint:disable-next-line:no-input-rename
-  @Input('mat-dialog-close') dialogResult: any;
+  @Input('mat-dialog-close') dialogResult: unknown;
   resetFlag: string;
 
   constructor(

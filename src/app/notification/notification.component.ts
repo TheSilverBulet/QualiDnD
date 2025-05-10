@@ -6,7 +6,8 @@ import { NotificationType, Notification } from '../shared/models.component';
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss']
+  styleUrls: ['./notification.component.scss'],
+  standalone: false
 })
 export class NotificationComponent implements OnInit {
 

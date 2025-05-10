@@ -11,7 +11,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 @Component({
   selector: 'app-initiative-table',
   templateUrl: './initiative-table.component.html',
-  styleUrls: ['./initiative-table.component.scss']
+  styleUrls: ['./initiative-table.component.scss'],
+  standalone: false
 })
 
 export class InitiativeTableComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {

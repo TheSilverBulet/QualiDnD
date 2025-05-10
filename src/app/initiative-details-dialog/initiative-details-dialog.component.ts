@@ -9,7 +9,8 @@ const DOUBLE_SPACE = '&nbsp;&nbsp;';
 @Component({
   selector: 'app-initiative-details-dialog',
   templateUrl: './initiative-details-dialog.component.html',
-  styleUrls: ['./initiative-details-dialog.component.scss']
+  styleUrls: ['./initiative-details-dialog.component.scss'],
+  standalone: false
 })
 export class InitiativeDetailsDialogComponent implements OnInit {
 
@@ -34,7 +35,7 @@ export class InitiativeDetailsDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  describeAllAbilities(monster: any) {
+  describeAllAbilities(monster: IMonster) {
     return `<b>STR</b>` + SINGLE_SPACE + this.describeAbility(monster.strength) + DOUBLE_SPACE + `<b>DEX</b>` + SINGLE_SPACE + this.describeAbility(monster.dexterity) + DOUBLE_SPACE + `<b>CON</b>` + SINGLE_SPACE + this.describeAbility(monster.constitution) + DOUBLE_SPACE + `<b>INT</b>` + SINGLE_SPACE + this.describeAbility(monster.intelligence) + DOUBLE_SPACE + `<b>WIS</b>` + SINGLE_SPACE + this.describeAbility(monster.wisdom) + DOUBLE_SPACE + `<b>CHA</b>` + SINGLE_SPACE + this.describeAbility(monster.charisma);
   }
 

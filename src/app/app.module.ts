@@ -70,7 +70,6 @@ import { NotificationComponent } from './notification/notification.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule,
     RouterModule,
     MaterialImportModule
   ],

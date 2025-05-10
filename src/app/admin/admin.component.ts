@@ -8,7 +8,8 @@ import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
+  standalone: false
 })
 export class AdminComponent implements OnInit, AfterViewInit {
 

@@ -4,7 +4,8 @@ import { UtilityService } from '../shared/utility.service';
 @Component({
   selector: 'app-reference-dialog',
   templateUrl: './reference-dialog.component.html',
-  styleUrls: ['./reference-dialog.component.scss']
+  styleUrls: ['./reference-dialog.component.scss'],
+  standalone: false
 })
 export class ReferenceDialogComponent implements OnInit {
 

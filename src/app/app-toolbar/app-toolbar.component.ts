@@ -6,15 +6,12 @@ import { DiceRollerDialogComponent } from '../dice-roller-dialog/dice-roller-dia
 import { ReferenceDialogComponent } from '../reference-dialog/reference-dialog.component';
 import { AuthService } from '../authorization/auth.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { CommonModule } from '@angular/common';
-import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './app-toolbar.component.html',
   styleUrls: ['./app-toolbar.component.scss'],
-  imports: [MatToolbarModule, MatMenuModule, CommonModule]
+  standalone: false
 })
 export class AppToolbarComponent implements OnInit {
 

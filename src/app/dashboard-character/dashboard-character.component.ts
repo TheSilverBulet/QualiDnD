@@ -7,7 +7,8 @@ import { AppViewService } from '../shared/app-view.service';
 @Component({
   selector: 'app-dashboard-character',
   templateUrl: './dashboard-character.component.html',
-  styleUrls: ['./dashboard-character.component.scss']
+  styleUrls: ['./dashboard-character.component.scss'],
+  standalone: false
 })
 export class DashboardCharacterComponent implements OnInit {
 

@@ -8,7 +8,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 @Component({
   selector: 'app-edit-character-dialog',
   templateUrl: './edit-character-dialog.component.html',
-  styleUrls: ['./edit-character-dialog.component.scss']
+  styleUrls: ['./edit-character-dialog.component.scss'],
+  standalone: false
 })
 export class EditCharacterDialogComponent implements OnInit {
 
