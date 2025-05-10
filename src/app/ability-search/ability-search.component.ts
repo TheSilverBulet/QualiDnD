@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IJutsu, ISpell, ICharacter, ClassOption } from '../shared/models.component';
 import { UtilityService } from '../shared/utility.service';
 import { Observable } from 'rxjs';

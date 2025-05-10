@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../shared/login.service';
 import { Router } from '@angular/router';
-import { MatSnackBar, MatDialog } from '@angular/material';
 import { ResetPasswordDialogComponent } from '../reset-password-dialog/reset-password-dialog.component';
 import { AppViewService } from '../shared/app-view.service';
 import { NotificationService } from '../notification.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',

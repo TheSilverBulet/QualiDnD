@@ -1,8 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { IUser } from '../shared/models.component';
-import { MatTableDataSource, MatSort } from '@angular/material';
 import { UserService } from '../shared/user.service';
 import { AuthService } from '../authorization/auth.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-admin',
