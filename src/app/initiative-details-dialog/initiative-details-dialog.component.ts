@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { IMonster, IAbility, ICharacter } from '../shared/models.component';
 import { SafeHtmlPipe } from '../pipes/safe-html.pipe';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 const SINGLE_SPACE = '&nbsp;';
 const DOUBLE_SPACE = '&nbsp;&nbsp;';

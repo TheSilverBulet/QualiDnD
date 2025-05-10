@@ -192,7 +192,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  fetchCharacter(d) {
+  fetchCharacter() {
     this.charService.getDashboardCharacter().subscribe(resp => {
       if (resp) {
         this.activeCharacter = resp;

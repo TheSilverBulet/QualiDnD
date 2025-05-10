@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ICharacter } from '../shared/models.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DashboardCharacterExpandedDialogComponent } from '../dashboard-character-expanded-dialog/dashboard-character-expanded-dialog.component';
 import { AppViewService } from '../shared/app-view.service';
 
@@ -23,14 +23,15 @@ export class DashboardCharacterComponent implements OnInit {
   }
 
   displayCharacter(): void {
-    const dialogRef = this.dialog.open(DashboardCharacterExpandedDialogComponent, {
-      width: '400px',
-      autoFocus: false,
-      data: {
-        character: this.activeCharacter,
-        fromDashboard: true
-      }
-    }).afterClosed().subscribe(() => {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '400px';
+    dialogConfig.data = {
+      character: this.activeCharacter,
+      fromDashboard: true
+    }
+
+    this.dialog.open(DashboardCharacterExpandedDialogComponent, dialogConfig).afterClosed().subscribe(() => {
       this.characterEmitter.emit(true);
     });
   }

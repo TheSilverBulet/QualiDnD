@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ICharacter, ClassOption } from '../shared/models.component';
 import { EditCharacterDialogComponent } from '../edit-character-dialog/edit-character-dialog.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-character-expanded-dialog',
@@ -40,10 +39,14 @@ export class DashboardCharacterExpandedDialogComponent implements OnInit {
   }
 
   openEditDialog() {
-    const dialogRef = this.dialog.open(EditCharacterDialogComponent, {
-      width: '750px',
-      data: { character: this.character }
-    });
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.width = '750px';
+    dialogConfig.data = {
+      character: this.character
+    }
+
+    this.dialog.open(EditCharacterDialogComponent, dialogConfig);
   }
 
 }

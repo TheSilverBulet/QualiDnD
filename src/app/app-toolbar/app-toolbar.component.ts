@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../shared/login.service';
 import { Router } from '@angular/router';
 import { IUser } from '../shared/models.component';
-import { MatDialog } from '@angular/material';
 import { DiceRollerDialogComponent } from '../dice-roller-dialog/dice-roller-dialog.component';
 import { ReferenceDialogComponent } from '../reference-dialog/reference-dialog.component';
 import { AuthService } from '../authorization/auth.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-toolbar',
@@ -45,17 +45,19 @@ export class AppToolbarComponent implements OnInit {
   }
 
   openDiceRoller() {
-    const dialogRef = this.dialog.open(DiceRollerDialogComponent, {
-      width: '400px',
-      autoFocus: false
-    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '400px';
+
+    this.dialog.open(DiceRollerDialogComponent, dialogConfig);
   }
 
   openReferenceDialog() {
-    const dialogRef = this.dialog.open(ReferenceDialogComponent, {
-      width: '600px',
-      autoFocus: false
-    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '600px';
+
+    this.dialog.open(ReferenceDialogComponent, dialogConfig);
   }
 
   logout(): void {

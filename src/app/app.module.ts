@@ -88,16 +88,6 @@ import { NotificationComponent } from './notification/notification.component';
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
-  ]//,
-  // entryComponents: [
-  //   DashboardCharacterExpandedDialogComponent,
-  //   CharacterCreationDialogComponent,
-  //   ResetPasswordDialogComponent,
-  //   UpdateAttributeDialogComponent,
-  //   DiceRollerDialogComponent,
-  //   ReferenceDialogComponent,
-  //   EditCharacterDialogComponent,
-  //   InitiativeDetailsDialogComponent
-  // ]
+  ]
 })
 export class AppModule { }

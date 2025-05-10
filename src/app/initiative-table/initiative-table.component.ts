@@ -1,12 +1,12 @@
 import { Component, OnInit, OnChanges, Input, SimpleChanges, AfterViewInit, OnDestroy, EventEmitter, Output } from '@angular/core';
-import { IInitiative, IUser, IAttrUpdate } from '../shared/models.component';
+import { IInitiative, IAttrUpdate } from '../shared/models.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription, interval } from 'rxjs';
 import { InitiativeService } from '../shared/initiative.service';
-import { MatDialog } from '@angular/material';
 import { UpdateAttributeDialogComponent } from '../update-attribute-dialog/update-attribute-dialog.component';
 import { InitiativeDetailsDialogComponent } from '../initiative-details-dialog/initiative-details-dialog.component';
 import { AuthService } from '../authorization/auth.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-initiative-table',
@@ -32,7 +32,7 @@ export class InitiativeTableComponent implements OnInit, OnChanges, AfterViewIni
 
   ngOnInit() {
     const source = interval(20000);
-    this.subscription = source.subscribe(val => this.reloadInitTable());
+    this.subscription = source.subscribe(() => this.reloadInitTable());
     this.isAdmin = this.authService.isAdmin;
   }
 
@@ -60,14 +60,16 @@ export class InitiativeTableComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   openHealthDialog(creature) {
-    const dialogRef = this.dialog.open(UpdateAttributeDialogComponent, {
-      width: '750px',
-      data: {
-        creature,
-        attributeKey: 'currentHealth',
-        attributeCurrentValue: creature.currentHealth
-      }
-    }).afterClosed().subscribe(data => {
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.width = '750px';
+    dialogConfig.data = {
+      creature,
+      attributeKey: 'currentHealth',
+      attributeCurrentValue: creature.currentHealth
+    }
+
+    this.dialog.open(UpdateAttributeDialogComponent, dialogConfig).afterClosed().subscribe(data => {
       this.updateHealth(data);
     });
   }
@@ -94,15 +96,21 @@ export class InitiativeTableComponent implements OnInit, OnChanges, AfterViewIni
     this.initiativeService.retrieveEntityInfo(creature).subscribe(resp => {
       if (resp) {
         console.log(resp);
-        const dialogRef = this.dialog.open(InitiativeDetailsDialogComponent, {
-          width: '750px',
-          data: { resp }
-        })
+        const dialogConfig = new MatDialogConfig();
+    
+        dialogConfig.width = '750px';
+        dialogConfig.data = {
+          resp
+        }
+
+        this.dialog.open(InitiativeDetailsDialogComponent, dialogConfig);
       }
-    })
+    });
   }
 
   ngOnDestroy() {
-    this.subscription && this.subscription.unsubscribe();
+    if (this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 }

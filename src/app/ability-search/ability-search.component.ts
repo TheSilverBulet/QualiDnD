@@ -520,7 +520,7 @@ export class AbilitySearchComponent implements OnInit {
     return this.checkIsNullorUndefined(this.spellFormControl.value) ? false : this.spellFormControl.value.includes('isRitualSpells');
   }
 
-  checkIsNullorUndefined(item: any) {
+  checkIsNullorUndefined(item: unknown) {
     return item === null || item === undefined;
   }
 

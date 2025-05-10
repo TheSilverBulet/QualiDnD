@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ResetPasswordDialogComponent } from '../reset-password-dialog/reset-password-dialog.component';
 import { AppViewService } from '../shared/app-view.service';
 import { NotificationService } from '../notification.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -44,10 +44,11 @@ export class LoginComponent implements OnInit {
 
 
   resetDialog(): void {
-    const dialogRef = this.dialog.open(ResetPasswordDialogComponent, {
-      width: '550px',
-      autoFocus: false
-    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '550px';
+
+    this.dialog.open(ResetPasswordDialogComponent, dialogConfig);
   }
 
   get isMobile() {

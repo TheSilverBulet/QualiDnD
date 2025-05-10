@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ICharacter, ClassOption, IClass } from '../shared/models.component';
 import { CharacterService } from '../shared/character.service';
 import { FormControl } from '@angular/forms';
 import { FormUtilityService } from '../shared/form-utility.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-character-dialog',
