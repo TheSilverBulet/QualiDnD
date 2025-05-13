@@ -9,6 +9,9 @@ import { UtilityService } from '../shared/utility.service';
 import { startWith, map } from 'rxjs/operators';
 import { AppViewService } from '../shared/app-view.service';
 import { SafeHtmlPipe } from '../pipes/safe-html.pipe';
+import { InitiativeTableComponent } from '../initiative-table/initiative-table.component';
+import { DashboardCharacterComponent } from '../dashboard-character/dashboard-character.component';
+import { AbilitySearchComponent } from '../ability-search/ability-search.component';
 
 const SINGLE_SPACE = '&nbsp;';
 const DOUBLE_SPACE = '&nbsp;&nbsp;';
@@ -17,7 +20,7 @@ const DOUBLE_SPACE = '&nbsp;&nbsp;';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  standalone: false
+  imports: [InitiativeTableComponent, DashboardCharacterComponent, AbilitySearchComponent]
 })
 export class DashboardComponent implements OnInit {
 
@@ -27,7 +30,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('npcDexBonusField', { static: false }) npcDexBonusField: ElementRef;
   miscBonus: number;
   initTable: IInitiative[] = [];
-  activeCharacter: ICharacter;
+  activeCharacter: ICharacter | null;
 
   /** NPC Initiative */
   npcName: string;
@@ -42,7 +45,7 @@ export class DashboardComponent implements OnInit {
 
   /** Monster */
   monsters: IMonster[];
-  selectedMonster: IMonster;
+  selectedMonster: IMonster | null;
   filteredMonsters: Observable<IMonster[]>;
   monsterControl = new FormControl();
 
@@ -160,7 +163,7 @@ export class DashboardComponent implements OnInit {
   }
 
   get firstname(): string {
-    const name: string = JSON.parse(sessionStorage.getItem('currentUser')).firstName;
+    const name: string = JSON.parse((sessionStorage.getItem('currentUser') as string)).firstName;
     return name.charAt(0).toUpperCase() + name.slice(1);
   }
 

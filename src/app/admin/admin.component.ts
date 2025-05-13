@@ -9,7 +9,7 @@ import { MatSort } from '@angular/material/sort';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  standalone: false
+  imports: []
 })
 export class AdminComponent implements OnInit, AfterViewInit {
 
