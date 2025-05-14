@@ -18,9 +18,9 @@ export class UtilityService {
 
   retrieveAllSpells(): ISpell[] {
     let spells: ISpell[] = [];
-    this.http.get(environment.apiUrl + '/retrieveAllSpells', {responseType: 'json'}).subscribe(spells=> {
-      if (spells){
-        spells = spells;
+    this.http.get(environment.apiUrl + '/retrieveAllSpells', {responseType: 'json'}).subscribe(spls=> {
+      if (spls){
+        spells = spls as ISpell[];
       }
     });
     return spells;

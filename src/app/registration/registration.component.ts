@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IClass, ClassOption } from '../shared/models.component';
+import { IClass, ClassOption, IUser, ICharacter, IRegistrationUser, IRegistrationCharacter } from '../shared/models.component';
 import { UserService } from '../shared/user.service';
 import { AppViewService } from '../shared/app-view.service';
 import { FormControl } from '@angular/forms';
@@ -64,15 +64,14 @@ export class RegistrationComponent implements OnInit {
     this.classList = this.formUtils.getClassList();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   toDashboard() {
     this.router.navigate(['/login']);
   }
 
   register() {
-    const newUser = {
+    const newUser: IRegistrationUser = {
       id: null,
       firstName: this.firstName,
       lastName: this.lastName,
@@ -82,12 +81,13 @@ export class RegistrationComponent implements OnInit {
       role: 'USER',
       activeCharacter: null
     };
+    let newCharacter: IRegistrationCharacter | null = null;
     if (this.createCharacter) {
       this.getClassObjects();
       if (!this.formUtils.isValidLevels(this.level, this.selectedClasses)) {
         this.snackBar.open('The levels provided don\'t match overall level', 'Done').onAction().subscribe(() => { });
       }
-      const newCharacter = {
+      newCharacter = {
         name: this.characterName,
         race: this.selectedRace,
         level: this.level !== undefined ? this.level : 0,
@@ -103,26 +103,16 @@ export class RegistrationComponent implements OnInit {
         wisdom: this.wisdom !== undefined ? this.wisdom : 0,
         charisma: this.charisma !== undefined ? this.charisma : 0,
       };
-      if (this.formUnprocessable(newUser, newCharacter) || !this.formUtils.isValidLevels(this.level, this.selectedClasses)) {
-        this.snackBar.open('There was an issue processing your form', 'Done').onAction().subscribe(() => { });
-      } else {
-        this.userService.registerUser(newUser, newCharacter).subscribe(resp => {
-          if (resp) {
-            this.notificationService.success("Registration", "You have successfully registered", 4000);
-            this.router.navigate(['/login']);
-          }
-        });
-      }
+    }
+    if (this.formUnprocessable(newUser, newCharacter) || !this.formUtils.isValidLevels(this.level, this.selectedClasses)) {
+      this.snackBar.open('There was an issue processing your form', 'Done').onAction().subscribe(() => { });
     } else {
-      if (this.formUnprocessable(newUser, null) || !this.formUtils.isValidLevels(this.level, this.selectedClasses)) {
-        this.snackBar.open('There was an issue processing your form', 'Done').onAction().subscribe(() => { });
+      const registrationSuccess = this.userService.registerUser(newUser, newCharacter);
+      if (registrationSuccess){
+        this.notificationService.success("Registration", "You have successfully registered", 4000);
+        this.router.navigate(['/login']);
       } else {
-        this.userService.registerUser(newUser, null).subscribe(resp => {
-          if (resp) {
-            this.notificationService.success("Registration", "You have successfully registered", 4000);
-            this.router.navigate(['/login']);
-          }
-        });
+        this.notificationService.error("Registration", "There was a problem registering");
       }
     }
   }
@@ -230,7 +220,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  formUnprocessable(potentialUser, potentialChar): boolean {
+  formUnprocessable(potentialUser: IRegistrationUser, potentialChar: IRegistrationCharacter | null): boolean {
     if (potentialChar === null) {
       return potentialUser.username === undefined || potentialUser.password === undefined ||
         potentialUser.password === ' ' || potentialUser.firstName === undefined || potentialUser.lastName === undefined;
@@ -241,7 +231,7 @@ export class RegistrationComponent implements OnInit {
       potentialUser.password === ' ' || potentialUser.firstName === undefined || potentialUser.lastName === undefined);
   }
 
-  get isMobile() {
+  get isMobile(): boolean {
     return this.appView.getIsMobileResolution();
   }
 
@@ -253,52 +243,51 @@ export class RegistrationComponent implements OnInit {
     return this.formUtils.getBardChosen(this.classes.value);
   }
 
-  get bloodHunterChosen() {
+  get bloodHunterChosen(): boolean {
     return this.formUtils.getBloodHunterChosen(this.classes.value);
   }
 
-  get clericChosen() {
+  get clericChosen(): boolean {
     return this.formUtils.getClericChosen(this.classes.value);
   }
 
-  get druidChosen() {
+  get druidChosen(): boolean {
     return this.formUtils.getDruidChosen(this.classes.value);
   }
 
-  get fighterChosen() {
+  get fighterChosen(): boolean {
     return this.formUtils.getFighterChosen(this.classes.value);
   }
 
-  get gunslingerChosen() {
+  get gunslingerChosen(): boolean {
     return this.formUtils.getGunslingerChosen(this.classes.value);
   }
 
-  get monkChosen() {
+  get monkChosen(): boolean {
     return this.formUtils.getMonkChosen(this.classes.value);
   }
 
-  get paladinChosen() {
+  get paladinChosen(): boolean {
     return this.formUtils.getPaladinChosen(this.classes.value);
   }
 
-  get rangerChosen() {
+  get rangerChosen(): boolean {
     return this.formUtils.getRangerChosen(this.classes.value);
   }
 
-  get rogueChosen() {
+  get rogueChosen(): boolean {
     return this.formUtils.getRogueChosen(this.classes.value);
   }
 
-  get sorcererChosen() {
+  get sorcererChosen(): boolean {
     return this.formUtils.getSorcererChosen(this.classes.value);
   }
 
-  get warlockChosen() {
+  get warlockChosen(): boolean {
     return this.formUtils.getWarlockChosen(this.classes.value);
   }
 
-  get wizardChosen() {
+  get wizardChosen(): boolean {
     return this.formUtils.getWizardChosen(this.classes.value);
   }
-
 }

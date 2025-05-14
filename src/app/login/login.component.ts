@@ -10,7 +10,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: []
+  imports: [ResetPasswordDialogComponent]
 })
 export class LoginComponent implements OnInit {
 

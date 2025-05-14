@@ -6,6 +6,25 @@ export interface IUser {
   role: string;
 }
 
+export interface IRegistrationUser extends IUser {
+  id: string | null;
+  password: string;
+  activeCharacter: ICharacter | null;
+}
+
+export interface IPasswordReset {
+  firstname: string;
+  username: string;
+  newPassword: string;
+}
+
+export interface IUsernameChange {
+  firstname: string;
+  lastname: string;
+  oldUsername: string;
+  newUsername: string;
+}
+
 export interface ICharacter {
   name: string;
   race: string;
@@ -27,6 +46,23 @@ export interface ICharacter {
   spellSlots: ISpellSlot[];
   userSetValues: Map<string, string>;
   owner: string;
+}
+
+export interface IRegistrationCharacter {
+  name: string;
+  race: string;
+  level: number;
+  maxHealth: number;
+  currentHealth: number;
+  characterClass: IClass[];
+  isMulticlassed: boolean;
+  isActive: boolean;
+  strength: number;
+  dexterity: number;
+  constitution: number;
+  intelligence: number;
+  wisdom: number;
+  charisma: number;
 }
 
 export interface IInitiative {

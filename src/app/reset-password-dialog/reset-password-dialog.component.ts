@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { NotificationService } from '../notification.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IPasswordReset, IUsernameChange } from '../shared/models.component';
 
 @Component({
   selector: 'app-reset-password-dialog',
@@ -32,40 +33,46 @@ export class ResetPasswordDialogComponent implements OnInit {
 
   reset() {
     if (this.resetFlag === 'password') {
-      if (this.checkValuesNotEmpty([this.firstName, this.username, this.newPassword])) {
-        this.snackBar.open('None of the requested fields can be blank!', 'Close').onAction().subscribe(() => {
-        });
-      }
-      const resetObj = {
-        firstname: this.firstName,
-        username: this.username,
-        newPassword: this.newPassword
-      };
-      this.userService.resetPassword(resetObj).subscribe(resp => {
-        if (resp) {
-          this.notificationService.success("Password Reset Success", "Your password was reset successfully", 4000);
-        } else {
-          this.notificationService.error("Password Reset Error", "There was an error resetting your password", 4000);
-        }
-      });
+      this.doPasswordReset();
     } else {
-      if (this.checkValuesNotEmpty([this.firstName, this.lastName, this.newUsername, this.oldUsername])) {
-        this.snackBar.open('None of the requested fields can be blank!', 'Close').onAction().subscribe(() => {
-        });
-      }
-      const resetObj = {
-        firstname: this.firstName,
-        lastName: this.lastName,
-        newUsername: this.newUsername,
-        oldUsername: this.oldUsername
-      };
-      this.userService.resetUsername(resetObj).subscribe(resp => {
-        if (resp) {
-          this.notificationService.success("Username Reset Success", "Your username was reset successfully", 4000);
-        } else {
-          this.notificationService.error("Username Reset Error", "There was an error resetting your username", 4000);
-        }
+      
+    }
+  }
+
+  doPasswordReset() {
+    if (this.checkValuesNotEmpty([this.firstName, this.username, this.newPassword])) {
+      this.snackBar.open('None of the requested fields can be blank!', 'Close').onAction().subscribe(() => {
       });
+    }
+    const resetObj: IPasswordReset = {
+      firstname: this.firstName,
+      username: this.username,
+      newPassword: this.newPassword
+    };
+    const resetSuccess = this.userService.resetPassword(resetObj);
+    if (resetSuccess) {
+      this.notificationService.success("Password Reset Success", "Your password was reset successfully", 4000);
+    } else {
+      this.notificationService.error("Password Reset Error", "There was an error resetting your password", 4000);
+    }
+  }
+
+  doUsernameChange() {
+    if (this.checkValuesNotEmpty([this.firstName, this.lastName, this.newUsername, this.oldUsername])) {
+      this.snackBar.open('None of the requested fields can be blank!', 'Close').onAction().subscribe(() => {
+      });
+    }
+    const resetObj: IUsernameChange = {
+      firstname: this.firstName,
+      lastname: this.lastName,
+      newUsername: this.newUsername,
+      oldUsername: this.oldUsername
+    };
+    const changeUsernameSuccess = this.userService.resetUsername(resetObj);
+    if (changeUsernameSuccess){
+      this.notificationService.success("Username Reset Success", "Your username was reset successfully", 4000);
+    } else {
+      this.notificationService.error("Username Reset Error", "There was an error resetting your username", 4000);
     }
   }
 
