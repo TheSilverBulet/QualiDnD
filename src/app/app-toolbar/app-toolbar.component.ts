@@ -70,11 +70,11 @@ export class AppToolbarComponent implements OnInit {
   }
 
   get username(): string {
-    return JSON.parse(sessionStorage.getItem('currentUser')).username;
+    return JSON.parse(sessionStorage.getItem('currentUser') as string).username;
   }
 
   get user(): IUser {
-    return JSON.parse(sessionStorage.getItem('currentUser'));
+    return JSON.parse(sessionStorage.getItem('currentUser') as string);
   }
 
 }

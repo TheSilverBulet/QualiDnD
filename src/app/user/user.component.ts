@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
-  standalone: false
+  imports: []
 })
 export class UserComponent implements OnInit, OnChanges, AfterViewInit {
 
@@ -33,7 +33,7 @@ export class UserComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.characterList = changes.characterList.currentValue;
+    this.characterList = changes['characterList'].currentValue;
     this.dataSource.data = this.characterList;
     this.dataSource.sort = this.sort;
   }
@@ -125,7 +125,7 @@ export class UserComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   get userInfo(): IUser {
-    return JSON.parse(sessionStorage.getItem('currentUser'));
+    return JSON.parse(sessionStorage.getItem('currentUser') as string);
   }
 
   get isMobile() {

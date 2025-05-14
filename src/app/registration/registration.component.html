@@ -62,9 +62,6 @@
                 <mat-form-field>
                     <input matInput name="Charisma" placeholder="Charisma" [(ngModel)]='charisma'>
                 </mat-form-field><br />
-                <mat-form-field *ngIf="shinobiChosen">
-                    <input matInput name="Chakra" placeholder="Chakra" [(ngModel)]='chakra'>
-                </mat-form-field><br />
                 <mat-form-field *ngIf="barbarianChosen">
                     <input matInput name="barbarianLevel" placeholder="Barbarian Level" [(ngModel)]="barbarianLevel">
                 </mat-form-field><br />
@@ -98,9 +95,6 @@
                 </mat-form-field><br />
                 <mat-form-field *ngIf="rogueChosen">
                     <input matInput name="rogueLevel" placeholder="Rogue Level" [(ngModel)]="rogueLevel">
-                </mat-form-field><br />
-                <mat-form-field *ngIf="shinobiChosen">
-                    <input matInput name="shinobiLevel" placeholder="Shinobi Level" [(ngModel)]="shinobiLevel">
                 </mat-form-field><br />
                 <mat-form-field *ngIf="sorcererChosen">
                     <input matInput name="sorcererLevel" placeholder="Sorcerer Level" [(ngModel)]="sorcererLevel">

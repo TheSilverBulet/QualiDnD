@@ -8,43 +8,9 @@
         <mat-radio-button class="radio-button" [value]="3">Monster</mat-radio-button>
     </mat-radio-group>
 </div>
-<mat-card class="mat-elevation-z8" *ngIf="isJutsu || isSpell || isFile || isMonster"
+<mat-card class="mat-elevation-z8" *ngIf="isSpell || isFile || isMonster"
     style="width: 80%; text-align: center; margin-left: auto; margin-right: auto;">
     <mat-card-content>
-        <div *ngIf="isJutsu" style="width: 100%; text-align: center; margin-left: 0; margin-right: 0;">
-            <mat-form-field>
-                <input matInput placeholder="Jutsu Name" name="jName" [(ngModel)]="jutsuName">
-            </mat-form-field><br />
-            <mat-form-field>
-                <mat-label>Jutsu Release(Style)</mat-label>
-                <mat-select [(ngModel)]="release" name="jRelease">
-                    <mat-option *ngFor="let release of releases" [value]="release.value">
-                        {{ release.key }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field><br />
-            <mat-form-field>
-                <mat-label>Jutsu Rank</mat-label>
-                <mat-select [(ngModel)]="jutsuRank" name="jRank">
-                    <mat-option *ngFor="let rank of ranks" [value]="rank.value">
-                        {{ rank.key }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field><br />
-            <mat-form-field>
-                <input matInput placeholder="Chakra Cost" name="cost" [(ngModel)]="cost">
-            </mat-form-field><br />
-            <mat-form-field>
-                <input matInput placeholder="Jutsu Range" name="jrange" [(ngModel)]="jRange">
-            </mat-form-field><br />
-            <mat-form-field>
-                <input matInput placeholder="Jutsu Duration" name="jduration" [(ngModel)]="jDuration">
-            </mat-form-field><br />
-            <mat-form-field style="width: 40%;">
-                <textarea matInput rows="5" cols="50" class="description" placeholder="Jutsu Description"
-                    name="jdescription" [(ngModel)]="jDescription"></textarea>
-            </mat-form-field><br />
-        </div>
         <div *ngIf="isSpell" style="width: 100%; text-align: center; margin-left: 0; margin-right: 0;">
             <mat-form-field>
                 <input matInput placeholder="Spell Name" name="sName" [(ngModel)]="spellName">

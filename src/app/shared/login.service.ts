@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { IUser } from './models.component';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class LoginService {
   }
 
   getUsername(): string {
-    const activeUser: IUser = JSON.parse((sessionStorage.getItem('currentUser')));
+    const activeUser: IUser = JSON.parse((sessionStorage.getItem('currentUser') as string));
     return activeUser.username;
   }
 }

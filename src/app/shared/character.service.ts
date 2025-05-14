@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ICharacter } from './models.component';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 const modMap: Map<number, number> =
   new Map([
@@ -31,7 +31,7 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  public convertABSToMod(score: number): number {
+  public convertABSToMod(score: number): number | undefined {
     if (score % 2 === 1) {
       score = score - 1;
     }
@@ -39,26 +39,26 @@ export class CharacterService {
   }
 
   public getDashboardCharacter(): any {
-    return this.http.get(environment.apiUrl + `/getDashboardChar/${JSON.parse(sessionStorage.getItem('currentUser')).username}`);
+    return this.http.get(environment.apiUrl + `/getDashboardChar/${JSON.parse(sessionStorage.getItem('currentUser') as string).username}`);
   }
 
   public createCharacter(newCharacter): any {
-    return this.http.post(environment.apiUrl + `/${JSON.parse(sessionStorage.getItem('currentUser')).username}/character/create`, { newCharacter });
+    return this.http.post(environment.apiUrl + `/${JSON.parse(sessionStorage.getItem('currentUser') as string).username}/character/create`, { newCharacter });
   }
 
   public getUserChars(): any {
-    return this.http.get(environment.apiUrl + `/getAllCharacters/${JSON.parse(sessionStorage.getItem('currentUser')).username}`);
+    return this.http.get(environment.apiUrl + `/getAllCharacters/${JSON.parse(sessionStorage.getItem('currentUser') as string).username}`);
   }
 
   public deleteCharacter(characterName: string): any {
-    return this.http.delete(environment.apiUrl + `/deleteCharacter/${characterName}/${JSON.parse(sessionStorage.getItem('currentUser')).username}`);
+    return this.http.delete(environment.apiUrl + `/deleteCharacter/${characterName}/${JSON.parse(sessionStorage.getItem('currentUser') as string).username}`);
   }
 
   public makeCharacterActive(characterName: string): any {
-    return this.http.get(environment.apiUrl + `/makeActive/${JSON.parse(sessionStorage.getItem('currentUser')).username}/${characterName}`);
+    return this.http.get(environment.apiUrl + `/makeActive/${JSON.parse(sessionStorage.getItem('currentUser') as string).username}/${characterName}`);
   }
 
   public updateCharacter(character: ICharacter): any {
-    return this.http.post(environment.apiUrl + `/${JSON.parse(sessionStorage.getItem('currentUser')).username}/character/update`, { character });
+    return this.http.post(environment.apiUrl + `/${JSON.parse(sessionStorage.getItem('currentUser') as string).username}/character/update`, { character });
   }
 }

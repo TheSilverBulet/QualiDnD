@@ -23,6 +23,6 @@ export class AuthService {
   }
 
   private get getUser(): IUser {
-    return JSON.parse(sessionStorage.getItem('currentUser'));
+    return JSON.parse(sessionStorage.getItem('currentUser') as string);
   }
 }

@@ -4,12 +4,13 @@ import { UserService } from '../shared/user.service';
 import { AuthService } from '../authorization/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { RecordKeepingComponent } from '../record-keeping/record-keeping.component';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  imports: []
+  imports: [RecordKeepingComponent]
 })
 export class AdminComponent implements OnInit, AfterViewInit {
 

@@ -20,7 +20,7 @@ const DOUBLE_SPACE = '&nbsp;&nbsp;';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  imports: [InitiativeTableComponent, DashboardCharacterComponent, AbilitySearchComponent]
+  imports: [InitiativeTableComponent, DashboardCharacterComponent, AbilitySearchComponent, SafeHtmlPipe]
 })
 export class DashboardComponent implements OnInit {
 

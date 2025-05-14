@@ -12,7 +12,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   selector: 'app-initiative-table',
   templateUrl: './initiative-table.component.html',
   styleUrls: ['./initiative-table.component.scss'],
-  standalone: false
+  imports: []
 })
 
 export class InitiativeTableComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
@@ -38,7 +38,7 @@ export class InitiativeTableComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.initTable = changes.initTable.currentValue;
+    this.initTable = changes['initTable'].currentValue;
     this.dataSource.data = this.initTable;
   }
 

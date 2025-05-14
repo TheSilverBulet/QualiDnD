@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
   selector: 'app-record-keeping',
   templateUrl: './record-keeping.component.html',
   styleUrls: ['./record-keeping.component.scss'],
-  standalone: false
+  imports: []
 })
 export class RecordKeepingComponent implements OnInit {
 
@@ -16,9 +16,6 @@ export class RecordKeepingComponent implements OnInit {
   { key: 'Divination', value: 'Divination' }, { key: 'Enchantment', value: 'Enchantment' },
   { key: 'Evocation', value: 'Evocation' }, { key: 'Illusion', value: 'Illusion' },
   { key: 'Necromancy', value: 'Necromancy' }, { key: 'Transmutation', value: 'Transmutation' }];
-
-  ranks = [{ key: 'S Rank', value: 'S' }, { key: 'A Rank', value: 'A' }, { key: 'B Rank', value: 'B' },
-  { key: 'C Rank', value: 'C' }, { key: 'D Rank', value: 'D' }, { key: 'Basic Level', value: 'Basic' }];
 
   sizes = [{ key: 'Tiny', value: 'Tiny' }, { key: 'Small', value: 'Small' }, { key: 'Medium', value: 'Medium' },
   { key: 'Large', value: 'Large' }, { key: 'Huge', value: 'Huge' }, { key: 'Gargantuan', value: 'Gargantuan' }];

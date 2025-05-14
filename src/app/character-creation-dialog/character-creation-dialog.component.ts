@@ -42,12 +42,10 @@ export class CharacterCreationDialogComponent implements OnInit {
   paladinLevel: number;
   rangerLevel: number;
   rogueLevel: number;
-  shinobiLevel: number;
   sorcererLevel: number;
   warlockLevel: number;
   witcherLevel: number;
   wizardLevel: number;
-  chakra: number;
   selectedClasses: IClass[] = [];
 
   constructor(
@@ -86,7 +84,6 @@ export class CharacterCreationDialogComponent implements OnInit {
       intelligence: this.formUtils.ensureNumeralNotNull(this.intelligence),
       wisdom: this.formUtils.ensureNumeralNotNull(this.wisdom),
       charisma: this.formUtils.ensureNumeralNotNull(this.charisma),
-      chakra: this.formUtils.ensureNumeralNotNull(this.chakra)
     };
     if (this.formUnprocessable(newCharacter)) {
       this.snackBar.open('There was an issue processing your form', 'Done').onAction().subscribe(() => { });
@@ -182,13 +179,6 @@ export class CharacterCreationDialogComponent implements OnInit {
       };
       this.selectedClasses.push(placeholder);
     }
-    if (this.formUtils.getShinobiChosen(this.classes.value)) {
-      placeholder = {
-        className: ClassOption.Shinobi,
-        classLevel: !this.formUtils.checkIsNullorUndefined(this.shinobiLevel) ? this.shinobiLevel : 0
-      };
-      this.selectedClasses.push(placeholder);
-    }
     if (this.formUtils.getSorcererChosen(this.classes.value)) {
       placeholder = {
         className: ClassOption.Sorcerer,
@@ -266,10 +256,6 @@ export class CharacterCreationDialogComponent implements OnInit {
 
   get rogueChosen() {
     return this.formUtils.getRogueChosen(this.classes.value);
-  }
-
-  get shinobiChosen() {
-    return this.formUtils.getShinobiChosen(this.classes.value);
   }
 
   get sorcererChosen() {

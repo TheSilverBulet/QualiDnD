@@ -9,7 +9,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   selector: 'app-edit-character-dialog',
   templateUrl: './edit-character-dialog.component.html',
   styleUrls: ['./edit-character-dialog.component.scss'],
-  standalone: false
+  imports: []
 })
 export class EditCharacterDialogComponent implements OnInit {
 
@@ -26,7 +26,6 @@ export class EditCharacterDialogComponent implements OnInit {
   paladinLevel: number;
   rangerLevel: number;
   rogueLevel: number;
-  shinobiLevel: number;
   sorcererLevel: number;
   warlockLevel: number;
   witcherLevel: number;
@@ -61,7 +60,7 @@ export class EditCharacterDialogComponent implements OnInit {
   }
 
   getCharacterClassInformation() {
-    const clazz = [];
+    const clazz: string[] = [];
     this.character.characterClass.forEach(character => {
       if (character.className === ClassOption.Barbarian) {
         clazz.push('barbarian');
@@ -106,10 +105,6 @@ export class EditCharacterDialogComponent implements OnInit {
       if (character.className === ClassOption.Rogue) {
         clazz.push('rogue');
         this.rogueLevel = character.classLevel;
-      }
-      if (character.className === ClassOption.Shinobi) {
-        clazz.push('shinobi');
-        this.shinobiLevel = character.classLevel;
       }
       if (character.className === ClassOption.Sorcerer) {
         clazz.push('sorcerer');
@@ -211,13 +206,6 @@ export class EditCharacterDialogComponent implements OnInit {
       };
       this.selectedClasses.push(placeholder);
     }
-    if (this.formUtils.getShinobiChosen(this.classes.value)) {
-      placeholder = {
-        className: ClassOption.Shinobi,
-        classLevel: !this.formUtils.checkIsNullorUndefined(this.shinobiLevel) ? this.shinobiLevel : 0
-      };
-      this.selectedClasses.push(placeholder);
-    }
     if (this.formUtils.getSorcererChosen(this.classes.value)) {
       placeholder = {
         className: ClassOption.Sorcerer,
@@ -301,10 +289,6 @@ export class EditCharacterDialogComponent implements OnInit {
     return this.formUtils.getRogueChosen(this.classes.value);
   }
 
-  get shinobiChosen() {
-    return this.formUtils.getShinobiChosen(this.classes.value);
-  }
-
   get sorcererChosen() {
     return this.formUtils.getSorcererChosen(this.classes.value);
   }
@@ -320,5 +304,4 @@ export class EditCharacterDialogComponent implements OnInit {
   get wizardChosen() {
     return this.formUtils.getWizardChosen(this.classes.value);
   }
-
 }

@@ -6,7 +6,7 @@ import { LoaderService } from '../loader.service';
   selector: 'app-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss'],
-  standalone: false
+  imports: []
 })
 export class LoaderComponent implements OnInit {
 

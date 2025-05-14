@@ -10,7 +10,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone: false
+  imports: []
 })
 export class LoginComponent implements OnInit {
 

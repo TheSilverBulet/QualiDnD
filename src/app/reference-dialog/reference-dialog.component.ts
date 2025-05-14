@@ -5,7 +5,7 @@ import { UtilityService } from '../shared/utility.service';
   selector: 'app-reference-dialog',
   templateUrl: './reference-dialog.component.html',
   styleUrls: ['./reference-dialog.component.scss'],
-  standalone: false
+  imports: []
 })
 export class ReferenceDialogComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class ReferenceDialogComponent implements OnInit {
     { key: 'Barbarian', value: 'Barbarian' }, { key: 'Bard', value: 'Bard' }, { key: 'Blood Hunter', value: 'Blood_Hunter' },
     { key: 'Cleric', value: 'Cleric' }, { key: 'Druid', value: 'Druid' }, { key: 'Fighter', value: 'Fighter' },
     { key: 'Gunslinger', value: 'Gunslinger' }, { key: 'Monk', value: 'Monk' }, { key: 'Paladin', value: 'Paladin' },
-    { key: 'Ranger', value: 'Ranger' }, { key: 'Rogue', value: 'Rogue' }, { key: 'Shinobi', value: 'Shinobi' },
+    { key: 'Ranger', value: 'Ranger' }, { key: 'Rogue', value: 'Rogue' },
     { key: 'Sorcerer', value: 'Sorcerer' }, { key: 'Warlock', value: 'Warlock' }, { key: 'Witcher', value: 'Witcher' }, { key: 'Wizard', value: 'Wizard' },
   ];
 

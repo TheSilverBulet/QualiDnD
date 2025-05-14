@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
-  standalone: false
+  imports: []
 })
 export class RegistrationComponent implements OnInit {
 
@@ -47,11 +47,9 @@ export class RegistrationComponent implements OnInit {
   paladinLevel: number;
   rangerLevel: number;
   rogueLevel: number;
-  shinobiLevel: number;
   sorcererLevel: number;
   warlockLevel: number;
   wizardLevel: number;
-  chakra: number;
   selectedClasses: IClass[] = [];
 
   constructor(
@@ -104,7 +102,6 @@ export class RegistrationComponent implements OnInit {
         intelligence: this.intelligence !== undefined ? this.intelligence : 0,
         wisdom: this.wisdom !== undefined ? this.wisdom : 0,
         charisma: this.charisma !== undefined ? this.charisma : 0,
-        chakra: this.chakra !== undefined ? this.chakra : 0
       };
       if (this.formUnprocessable(newUser, newCharacter) || !this.formUtils.isValidLevels(this.level, this.selectedClasses)) {
         this.snackBar.open('There was an issue processing your form', 'Done').onAction().subscribe(() => { });
@@ -210,13 +207,6 @@ export class RegistrationComponent implements OnInit {
       };
       this.selectedClasses.push(placeholder);
     }
-    if (this.formUtils.getShinobiChosen(this.classes.value)) {
-      placeholder = {
-        className: ClassOption.Shinobi,
-        classLevel: !this.formUtils.checkIsNullorUndefined(this.shinobiLevel) ? this.shinobiLevel : 0
-      };
-      this.selectedClasses.push(placeholder);
-    }
     if (this.formUtils.getSorcererChosen(this.classes.value)) {
       placeholder = {
         className: ClassOption.Sorcerer,
@@ -297,10 +287,6 @@ export class RegistrationComponent implements OnInit {
 
   get rogueChosen() {
     return this.formUtils.getRogueChosen(this.classes.value);
-  }
-
-  get shinobiChosen() {
-    return this.formUtils.getShinobiChosen(this.classes.value);
   }
 
   get sorcererChosen() {

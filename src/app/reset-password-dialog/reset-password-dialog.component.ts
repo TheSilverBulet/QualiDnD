@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-reset-password-dialog',
   templateUrl: './reset-password-dialog.component.html',
   styleUrls: ['./reset-password-dialog.component.scss'],
-  standalone: false
+  imports: []
 })
 export class ResetPasswordDialogComponent implements OnInit {
 

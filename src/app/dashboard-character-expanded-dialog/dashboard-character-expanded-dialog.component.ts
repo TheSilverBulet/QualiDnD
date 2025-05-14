@@ -7,7 +7,7 @@ import { EditCharacterDialogComponent } from '../edit-character-dialog/edit-char
   selector: 'app-dashboard-character-expanded-dialog',
   templateUrl: './dashboard-character-expanded-dialog.component.html',
   styleUrls: ['./dashboard-character-expanded-dialog.component.scss'],
-  standalone: false
+  imports: []
 })
 export class DashboardCharacterExpandedDialogComponent implements OnInit {
 

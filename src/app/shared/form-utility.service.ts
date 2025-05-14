@@ -19,7 +19,7 @@ export class FormUtilityService {
   classList = [{ key: 'Barbarian', value: 'barbarian' }, { key: 'Bard', value: 'bard' }, { key: 'Bloodhunter', value: 'bloodhunter' },
   { key: 'Cleric', value: 'cleric' }, { key: 'Druid', value: 'druid' }, { key: 'Fighter', value: 'fighter' },
   { key: 'Gunslinger', value: 'gunslinger' }, { key: 'Monk', value: 'monk' }, { key: 'Paladin', value: 'paladin' },
-  { key: 'Ranger', value: 'ranger' }, { key: 'Rogue', value: 'rogue' }, { key: 'Shinobi', value: 'shinobi' },
+  { key: 'Ranger', value: 'ranger' }, { key: 'Rogue', value: 'rogue' },
   { key: 'Sorcerer', value: 'sorcerer' }, { key: 'Warlock', value: 'warlock' }, { key: 'Witcher', value: 'witcher' },
   { key: 'Wizard', value: 'wizard' }];
 
@@ -100,10 +100,6 @@ export class FormUtilityService {
 
   getRogueChosen(formControlValueList) {
     return this.checkIsNullorUndefined(formControlValueList) ? false : formControlValueList.includes('rogue');
-  }
-
-  getShinobiChosen(formControlValueList) {
-    return this.checkIsNullorUndefined(formControlValueList) ? false : formControlValueList.includes('shinobi');
   }
 
   getSorcererChosen(formControlValueList) {

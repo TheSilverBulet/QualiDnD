@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-dice-roller-dialog',
   templateUrl: './dice-roller-dialog.component.html',
   styleUrls: ['./dice-roller-dialog.component.scss'],
-  standalone: false
+  imports: []
 })
 export class DiceRollerDialogComponent implements OnInit {
 

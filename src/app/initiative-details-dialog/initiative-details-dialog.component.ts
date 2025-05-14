@@ -10,7 +10,7 @@ const DOUBLE_SPACE = '&nbsp;&nbsp;';
   selector: 'app-initiative-details-dialog',
   templateUrl: './initiative-details-dialog.component.html',
   styleUrls: ['./initiative-details-dialog.component.scss'],
-  standalone: false
+  imports: []
 })
 export class InitiativeDetailsDialogComponent implements OnInit {
 
