@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UtilityService } from '../shared/utility.service';
-import { Spell, Jutsu, Monster, IAbility } from '../shared/models.component';
+import { Spell, Monster, IAbility, Ability } from '../shared/models.component';
 import { FormUtilityService } from '../shared/form-utility.service';
 import { FormControl } from '@angular/forms';
 
@@ -23,13 +23,6 @@ export class RecordKeepingComponent implements OnInit {
   sizes = [{ key: 'Tiny', value: 'Tiny' }, { key: 'Small', value: 'Small' }, { key: 'Medium', value: 'Medium' },
   { key: 'Large', value: 'Large' }, { key: 'Huge', value: 'Huge' }, { key: 'Gargantuan', value: 'Gargantuan' }];
 
-  releases = [{ key: 'Earth', value: 'Earth' }, { key: 'Fire', value: 'Fire' }, { key: 'Lightning', value: 'Lightning' },
-  { key: 'Water', value: 'Water' }, { key: 'Wind', value: 'Wind' }, { key: 'Blaze', value: 'Blaze' },
-  { key: 'Explosive', value: 'Explosive' }, { key: 'Ice', value: 'Ice' }, { key: 'Lava', value: 'Lava' },
-  { key: 'Magnet', value: 'Magnet' }, { key: 'Scorch', value: 'Scorch' }, { key: 'Storm', value: 'Storm' },
-  { key: 'Swift', value: 'Swift' }, { key: 'Vapor', value: 'Vapor' }, { key: 'Wood', value: 'Wood' },
-  { key: 'Yin-Yang', value: 'Yin-Yang' }];
-
   monsterTypes = [{ key: 'Aberration', value: 'Aberration' }, { key: 'Beast', value: 'Beast' },
   { key: 'Celestial', value: 'Celetstial' }, { key: 'Construct', value: 'Construct' },
   { key: 'Dragon', value: 'Dragon' }, { key: 'Elemental', value: 'Elemental' },
@@ -49,15 +42,6 @@ export class RecordKeepingComponent implements OnInit {
   // --  3 - Monster
   selectedDataType: number;
 
-  /** Jutsu variables */
-  jutsuName: string;
-  release: string;
-  jutsuRank: string;
-  cost: number;
-  jRange: string;
-  jDuration: string;
-  jDescription: string;
-
   /** Spell variables */
   spellName: string;
   spellSchool: string;
@@ -72,7 +56,7 @@ export class RecordKeepingComponent implements OnInit {
   classes = new FormControl();
 
   /** File Variables */
-  fileToUpload: File = null;
+  fileToUpload: File | null = null;
   @ViewChild('file', { static: false }) adminFile: ElementRef;
 
   /** Monster Variables */
@@ -116,25 +100,7 @@ export class RecordKeepingComponent implements OnInit {
 
   public addRecord() {
     if (this.selectedDataType === 0) {
-      const jutsu: Jutsu = new Jutsu();
-      jutsu.cost = this.cost;
-      jutsu.description = this.jDescription;
-      jutsu.duration = this.jDuration;
-      jutsu.jutsuName = this.jutsuName;
-      jutsu.range = this.jRange;
-      jutsu.rank = this.jutsuRank;
-      jutsu.release = this.release;
-      this.utilService.addJutsuRecord(jutsu).subscribe(resp => {
-        if (resp.success) {
-          this.cost = 0;
-          this.jDescription = '';
-          this.jDuration = '';
-          this.jutsuName = '';
-          this.jRange = '';
-          this.jutsuRank = '';
-          this.release = '';
-        }
-      });
+      console.log("Blank");
     } else if (this.selectedDataType === 1) {
       const spell: Spell = new Spell();
       spell.spellName = this.spellName;
@@ -155,27 +121,25 @@ export class RecordKeepingComponent implements OnInit {
       spell.warlockCanCast = this.warlockChosen;
       spell.wizardCanCast = this.wizardChosen;
       spell.isRitual = this.ritualChosen;
-      this.utilService.addSpellRecord(spell).subscribe(resp => {
-        if (resp.success) {
-          if (resp.success) {
-            this.spellName = '';
-            this.spellSchool = '';
-            this.spellLevel = 0;
-            this.castingTime = '';
-            this.components = '';
-            this.sDescription = '';
-            this.sDuration = '';
-            this.sRange = '';
-            this.classes.patchValue([]);
-          }
-        }
-      });
+      const success = this.utilService.addSpellRecord(spell);
+      if (success){
+        this.spellName = '';
+        this.spellSchool = '';
+        this.spellLevel = 0;
+        this.castingTime = '';
+        this.components = '';
+        this.sDescription = '';
+        this.sDuration = '';
+        this.sRange = '';
+        this.classes.patchValue([]);
+      }
     } else if (this.selectedDataType === 2) {
-      this.utilService.uploadFile(this.fileToUpload).subscribe(resp => {
-        if (resp && resp.success) {
+      if (this.fileToUpload){
+        const fileUploadSuccess = this.utilService.uploadFile(this.fileToUpload);
+        if (fileUploadSuccess){
           this.adminFile.nativeElement.value = null;
         }
-      });
+      }
     } else if (this.selectedDataType === 3) {
       const monster = new Monster();
       monster.commonName = this.monsterCommonName;
@@ -206,45 +170,40 @@ export class RecordKeepingComponent implements OnInit {
       monster.expValue = this.monsterExpValue;
       monster.avgHitDice = this.monsterHitDice;
       monster.legendaryActions = this.monsterLegendaryActions;
-      this.utilService.addMonsterRecord(monster).subscribe(resp => {
-        if (resp && resp.success) {
-          this.monsterCommonName = '';
-          this.monsterType = '';
-          this.monsterSubType = '';
-          this.monsterArmorClass = 0;
-          this.monsterHealth = 0;
-          this.monsterStrength = null;
-          this.monsterDexterity = null;
-          this.monsterConstitution = null;
-          this.monsterIntelligence = null;
-          this.monsterWisdom = null;
-          this.monsterCharisma = null;
-          this.monsterSpeed = '';
-          this.monsterSkills = '';
-          this.monsterSavingThrows = '';
-          this.monsterDamageResistances = '';
-          this.monsterDamageImmunities = '';
-          this.monsterDamageVulnerabilities = '';
-          this.monsterSenses = '';
-          this.monsterLanguages = '';
-          this.monsterChallengeRating = 0;
-          this.monsterAbilities = '';
-          this.monsterAttacks = '';
-          this.monsterSize = '';
-          this.monsterAlignment = '';
-          this.monsterConditionImmunities = '';
-          this.monsterExpValue = 0;
-          this.monsterHitDice = '';
-          this.monsterLegendaryActions = '';
-        }
-      });
+      const addMonsterSuccess = this.utilService.addMonsterRecord(monster);
+      if (addMonsterSuccess){
+        this.monsterCommonName = '';
+        this.monsterType = '';
+        this.monsterSubType = '';
+        this.monsterArmorClass = 0;
+        this.monsterHealth = 0;
+        this.monsterStrength = new Ability();
+        this.monsterDexterity = new Ability();
+        this.monsterConstitution = new Ability();
+        this.monsterIntelligence = new Ability();
+        this.monsterWisdom = new Ability();
+        this.monsterCharisma = new Ability();
+        this.monsterSpeed = '';
+        this.monsterSkills = '';
+        this.monsterSavingThrows = '';
+        this.monsterDamageResistances = '';
+        this.monsterDamageImmunities = '';
+        this.monsterDamageVulnerabilities = '';
+        this.monsterSenses = '';
+        this.monsterLanguages = '';
+        this.monsterChallengeRating = 0;
+        this.monsterAbilities = '';
+        this.monsterAttacks = '';
+        this.monsterSize = '';
+        this.monsterAlignment = '';
+        this.monsterConditionImmunities = '';
+        this.monsterExpValue = 0;
+        this.monsterHitDice = '';
+        this.monsterLegendaryActions = '';
+      }
     } else {
       console.log('Do nothing');
     }
-  }
-
-  get isJutsu() {
-    return this.selectedDataType === 0;
   }
 
   get isSpell() {
@@ -311,10 +270,6 @@ export class RecordKeepingComponent implements OnInit {
     return this.formUtils.getRogueChosen(this.classes.value);
   }
 
-  get shinobiChosen() {
-    return this.formUtils.getShinobiChosen(this.classes.value);
-  }
-
   get sorcererChosen() {
     return this.formUtils.getSorcererChosen(this.classes.value);
   }
@@ -338,6 +293,7 @@ export class RecordKeepingComponent implements OnInit {
         return false;
       }
     }
+    return true;
   }
 
 }

@@ -26,7 +26,6 @@ export interface ICharacter {
   deathSave: IDeathSave;
   spellSlots: ISpellSlot[];
   userSetValues: Map<string, string>;
-  chakra: number;
   owner: string;
 }
 
@@ -70,7 +69,6 @@ export enum ClassOption {
   Paladin = 'Paladin',
   Ranger = 'Ranger',
   Rogue = 'Rogue',
-  Shinobi = 'Shinobi',
   Sorcerer = 'Sorcerer',
   Warlock = 'Warlock',
   Witcher = 'Witcher',
@@ -135,26 +133,6 @@ export class Spell {
   wizardCanCast = false;
 }
 
-export interface IJutsu {
-  jutsuName: string;
-  release: string;
-  rank: string;
-  cost: number;
-  range: string;
-  description: string;
-  duration: string;
-}
-
-export class Jutsu {
-  jutsuName = '';
-  release = '';
-  rank = '';
-  cost = 0;
-  range = '';
-  description = '';
-  duration = '';
-}
-
 export interface IMonster {
   commonName: string;
   type: string;
@@ -192,12 +170,12 @@ export class Monster {
   subType = '';
   armorClass = 10;
   health = 0;
-  strength = null;
-  dexterity = null;
-  constitution = null;
-  intelligence = null;
-  wisdom = null;
-  charisma = null;
+  strength = new Ability();
+  dexterity = new Ability();
+  constitution = new Ability();
+  intelligence = new Ability();
+  wisdom = new Ability();
+  charisma = new Ability();
   speed = '';
   skills = '';
   savingThrows = '';

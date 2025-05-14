@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { ISpell, IJutsu, IMonster } from './models.component';
+import { ISpell, IMonster } from './models.component';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,35 +16,55 @@ export class UtilityService {
     return this.http.get(environment.apiUrl + `/serveReferenceFile/${docName}`, { responseType: 'blob' });
   }
 
-  retrieveAllSpells(): any {
-    return this.http.get(environment.apiUrl + '/retrieveAllSpells');
+  retrieveAllSpells(): ISpell[] {
+    let spells: ISpell[] = [];
+    this.http.get(environment.apiUrl + '/retrieveAllSpells', {responseType: 'json'}).subscribe(spells=> {
+      if (spells){
+        spells = spells;
+      }
+    });
+    return spells;
   }
 
-  retrieveAllJutsu(): any {
-    return this.http.get(environment.apiUrl + '/retrieveAllJutsu');
+  addSpellRecord(record: ISpell): boolean {
+    let spellAddSuccess = false;
+    this.http.post(environment.apiUrl + '/add/record/spell', {record}).subscribe(resp => {
+      if (resp){
+        spellAddSuccess =  true;
+      }
+    });
+    return spellAddSuccess;
   }
 
-  addJutsuRecord(record: IJutsu): any {
-    return this.http.post(environment.apiUrl + '/add/record/jutsu', { record });
+  addMonsterRecord(record: IMonster): boolean {
+    let monsterAddSuccess = false;
+    this.http.post(environment.apiUrl + '/add/record/monster', { record }).subscribe(resp => {
+      if (resp){
+        monsterAddSuccess = true;
+      }
+    });
+    return monsterAddSuccess;
   }
 
-  addSpellRecord(record: ISpell): any {
-    return this.http.post(environment.apiUrl + '/add/record/spell', { record });
+  retrieveAllMonsters(): IMonster[] {
+    let mons: IMonster[] = [];
+    this.http.get(environment.apiUrl + '/retrieveAllMonsters', {responseType: 'json'}).subscribe(monsters=> {
+      if (monsters){
+        mons = monsters as IMonster[];
+      }
+    });
+    return mons;
   }
 
-  addMonsterRecord(record: IMonster): any {
-    return this.http.post(environment.apiUrl + '/add/record/monster', { record });
-  }
-
-  retrieveAllMonsters(): any {
-    return this.http.get(environment.apiUrl + '/retrieveAllMonsters');
-  }
-
-  uploadFile(file: File): any {
+  uploadFile(file: File): boolean {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post(environment.apiUrl + '/uploadFile', formData);
+    let uploadSuccess = false;
+    this.http.post(environment.apiUrl + '/uploadFile', formData).subscribe(resp => {
+      if (resp){
+        uploadSuccess = true;
+      }
+    });
+    return uploadSuccess;
   }
-
-
 }

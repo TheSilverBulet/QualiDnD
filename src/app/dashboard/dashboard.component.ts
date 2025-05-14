@@ -73,12 +73,7 @@ export class DashboardComponent implements OnInit {
         this.activeCharacter = null;
       }
     });
-    this.utilService.retrieveAllMonsters().subscribe(monsters => {
-      if (monsters) {
-        this.monsters = monsters;
-      }
-    });
-
+    this.monsters = this.utilService.retrieveAllMonsters();
     this.isAdmin = this.authService.isAdmin;
   }
 

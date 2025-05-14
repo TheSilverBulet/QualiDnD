@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IJutsu, ISpell, ICharacter, ClassOption } from '../shared/models.component';
+import { ISpell, ICharacter, ClassOption } from '../shared/models.component';
 import { UtilityService } from '../shared/utility.service';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -14,22 +14,6 @@ import { AuthService } from '../authorization/auth.service';
 })
 export class AbilitySearchComponent implements OnInit {
 
-  /** Jutsu Keys */
-  /** Yin-Yang Release requires sage mode, but is singular */
-  /** Blaze Release = fire + lightning */
-  /** Explosive Release = earth + lightning */
-  /** Ice Release = water + wind */
-  /** Lava Release = earth + fire */
-  /** Magnet Release = wind + earth */
-  /** Scorch Release = wind + fire */
-  /** Storm Release = water + lightning */
-  /** Swift Release =  wind + lightning */
-  /** Vapor Release = fire + water */
-  /** Wood Release = earth + water */
-  releaseList = [{ key: 'Fire Release', value: 'fireRelease' }, { key: 'Water Release', value: 'waterRelease' },
-  { key: 'Lightning Release', value: 'lightningRelease' }, { key: 'Earth Release', value: 'earthRelease' },
-  { key: 'Wind Release', value: 'windRelease' }, { key: 'Yin-Yang Release', value: 'yinYangRelease' }];
-
 
   /** Spell Keys */
   spellList = [{ key: 'Bard Spells', value: 'bardCanCast' }, { key: 'BloodHunter Spells', value: 'bloodHunterCanCast' },
@@ -39,23 +23,16 @@ export class AbilitySearchComponent implements OnInit {
   { key: 'Wizard Spells', value: 'wizardCanCast' }, { key: 'Ritual Spells', value: 'isRitualSpells' }];
 
   /** Lists */
-  spells: ISpell[];
+  spells: ISpell[] | null;
   allSpells: ISpell[];
-  jutsu: IJutsu[];
-  allJutsu: IJutsu[];
 
   /** Form operators */
-  selectedSpell: ISpell;
-  selectedJutsu: IJutsu;
+  selectedSpell: ISpell | null;
   filteredSpells: Observable<ISpell[]>;
-  filteredJutsu: Observable<IJutsu[]>;
   spellControl = new FormControl();
-  jutsuControl = new FormControl();
-  releaseFormControl = new FormControl();
   spellFormControl = new FormControl();
   isFiltered = false;
 
-  isShinobi = false;
   isMagical = false;
 
   isAdmin = false;
@@ -68,27 +45,12 @@ export class AbilitySearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.utilService.retrieveAllSpells().subscribe(spells => {
-      if (spells) {
-        this.allSpells = spells;
-      }
-    });
-    this.utilService.retrieveAllJutsu().subscribe(jutsu => {
-      if (jutsu) {
-        this.allJutsu = jutsu;
-      }
-    });
-
-    this.isShinobi = this.isShinobiCharacter();
+    this.allSpells = this.utilService.retrieveAllSpells();
     this.isMagical = this.isMagicalCharacter();
   }
 
   describeSpell(selectedSpell: ISpell) {
     this.selectedSpell = selectedSpell;
-  }
-
-  describeJutsu(selectedJutsu: IJutsu) {
-    this.selectedJutsu = selectedJutsu;
   }
 
   prepareFilteredSpellList() {
@@ -177,150 +139,16 @@ export class AbilitySearchComponent implements OnInit {
     );
   }
 
-  prepareFilteredJutsuList() {
-    const fjutsu: IJutsu[] = [];
-    if (this.fireReleaseChosen) {
-      this.allJutsu.forEach(jutsu => {
-        if (jutsu.release === 'Fire') {
-          fjutsu.push(jutsu);
-        }
-      });
-      if (this.lightningReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Blaze') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-      if (this.waterReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Vapor') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-    }// fire end
-    if (this.earthReleaseChosen) {
-      this.allJutsu.forEach(jutsu => {
-        if (jutsu.release === 'Earth') {
-          fjutsu.push(jutsu);
-        }
-      });
-      if (this.lightningReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Explosive') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-      if (this.fireReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Lava') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-      if (this.waterReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Wood') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-    } // earth end
-    if (this.windReleaseChosen) {
-      this.allJutsu.forEach(jutsu => {
-        if (jutsu.release === 'Wind') {
-          fjutsu.push(jutsu);
-        }
-      });
-      if (this.lightningReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Swift') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-      if (this.earthReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Magnet') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-      if (this.fireReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Scorch') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-    } // wind end
-    if (this.lightningReleaseChosen) {
-      this.allJutsu.forEach(jutsu => {
-        if (jutsu.release === 'Lightning') {
-          fjutsu.push(jutsu);
-        }
-      });
-    } // lightning end
-    if (this.waterReleaseChosen) {
-      this.allJutsu.forEach(jutsu => {
-        if (jutsu.release === 'Water') {
-          fjutsu.push(jutsu);
-        }
-      });
-      if (this.lightningReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Storm') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-      if (this.windReleaseChosen) {
-        this.allJutsu.forEach(jutsu => {
-          if (jutsu.release === 'Ice') {
-            fjutsu.push(jutsu);
-          }
-        });
-      }
-    }// water end
-    if (this.yinYangReleaseChosen) {
-      this.allJutsu.forEach(jutsu => {
-        if (jutsu.release === 'Yin-Yang') {
-          fjutsu.push(jutsu);
-        }
-      });
-    }
-    if (this.allReleaseFlagsFalse()) {
-      this.allJutsu.forEach(spell => {
-        fjutsu.push(spell);
-      });
-    }
-    this.isFiltered = true;
-    fjutsu.sort(this.compareJutsuNames);
-    this.jutsu = fjutsu;
-    this.filteredJutsu = this.jutsuControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this.filterJutsu(value))
-    );
-  }
-
   filterSpells(value: ISpell): ISpell[] {
     const filterValue = value === undefined ? '' : value.spellName === undefined ? '' : value.spellName.toLowerCase();
-    return this.spells.filter(option => option.spellName.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  filterJutsu(value: string): IJutsu[] {
-    const filterValue = value === undefined ? '' : value.toLowerCase();
-    return this.jutsu.filter(option => option.jutsuName.toLowerCase().indexOf(filterValue) === 0);
+    if (this.spells){
+      return this.spells.filter(option => option.spellName.toLowerCase().indexOf(filterValue) === 0);
+    }
+    return []
   }
 
   testSelectedSpellValue(): boolean {
     return this.selectedSpell !== undefined && this.selectedSpell !== null;
-  }
-
-  testSelectedJutsuValue(): boolean {
-    return this.selectedJutsu !== undefined && this.selectedJutsu !== null;
   }
 
   resetSpell() {
@@ -334,51 +162,21 @@ export class AbilitySearchComponent implements OnInit {
     this.spellFormControl.patchValue([]);
   }
 
-  resetJutsu() {
-    this.selectedJutsu = null;
-  }
-
-  resetJutsuFilter() {
-    this.jutsu = null;
-    this.selectedJutsu = null;
-    this.isFiltered = false;
-    this.releaseFormControl.patchValue([]);
-  }
-
-  setShinobi() {
-    this.resetSpellFilter();
-    this.isShinobi = true;
-    this.isMagical = false;
-  }
-
   setMagical() {
-    this.resetJutsuFilter();
     this.isMagical = true;
-    this.isShinobi = false;
   }
 
   clearSettings() {
     this.resetSpellFilter();
     this.resetSpell();
-    this.resetJutsuFilter();
-    this.resetJutsu();
     this.isMagical = false;
-    this.isShinobi = false;
   }
 
   displayLevelAndSchool() {
-    if (this.selectedSpell.spellLevel === 0) {
+    if (this.selectedSpell?.spellLevel === 0) {
       return this.selectedSpell.spellSchool + ' Cantrip';
     } else {
-      return 'Level ' + this.selectedSpell.spellLevel + ' ' + this.selectedSpell.spellSchool;
-    }
-  }
-
-  displayRankAndRelease() {
-    if (this.selectedJutsu.rank !== 'Basic') {
-      return this.selectedJutsu.rank + ' Rank ' + this.selectedJutsu.release + ' Release';
-    } else {
-      return this.selectedJutsu.rank + ' ' + this.selectedJutsu.release + ' Release';
+      return 'Level ' + this.selectedSpell?.spellLevel + ' ' + this.selectedSpell?.spellSchool;
     }
   }
 
@@ -391,7 +189,7 @@ export class AbilitySearchComponent implements OnInit {
 
   isMagicalCharacter(): boolean {
     let isMagical = false;
-    const character: ICharacter = JSON.parse(sessionStorage.getItem('activeCharacter'));
+    const character: ICharacter = JSON.parse((sessionStorage.getItem('activeCharacter') as string));
     if (!character) {
       return false;
     }
@@ -407,31 +205,9 @@ export class AbilitySearchComponent implements OnInit {
     return isMagical;
   }
 
-  isShinobiCharacter(): boolean {
-    const character: ICharacter = JSON.parse(sessionStorage.getItem('activeCharacter'));
-    if (!character) {
-      return false;
-    }
-    let isShinobi = false;
-    character.characterClass.forEach(ele => {
-      if (ele.className === ClassOption.Shinobi) {
-        isShinobi = true;
-      }
-    });
-    return isShinobi;
-  }
-
   allSpellFlagsFalse() {
     if (!this.bardChosen && !this.bloodHunterChosen && !this.clericChosen && !this.druidChosen && !this.ritualSpellsChosen &&
       !this.paladinChosen && !this.rangerChosen && !this.sorcererChosen && !this.warlockChosen && !this.wizardChosen) {
-      return true;
-    }
-    return false;
-  }
-
-  allReleaseFlagsFalse() {
-    if (!this.fireReleaseChosen && !this.earthReleaseChosen && !this.windReleaseChosen && !this.lightningReleaseChosen &&
-      !this.waterReleaseChosen) {
       return true;
     }
     return false;
@@ -447,39 +223,6 @@ export class AbilitySearchComponent implements OnInit {
     return 0;
   }
 
-  compareJutsuNames(a, b) {
-    if (a.jutsuName < b.jutsuName) {
-      return -1;
-    }
-    if (a.jutsuName > b.jutsuName) {
-      return 1;
-    }
-    return 0;
-  }
-
-  get fireReleaseChosen() {
-    return this.checkIsNullorUndefined(this.releaseFormControl.value) ? false : this.releaseFormControl.value.includes('fireRelease');
-  }
-
-  get waterReleaseChosen() {
-    return this.checkIsNullorUndefined(this.releaseFormControl.value) ? false : this.releaseFormControl.value.includes('waterRelease');
-  }
-
-  get lightningReleaseChosen() {
-    return this.checkIsNullorUndefined(this.releaseFormControl.value) ? false : this.releaseFormControl.value.includes('lightningRelease');
-  }
-
-  get earthReleaseChosen() {
-    return this.checkIsNullorUndefined(this.releaseFormControl.value) ? false : this.releaseFormControl.value.includes('earthRelease');
-  }
-
-  get windReleaseChosen() {
-    return this.checkIsNullorUndefined(this.releaseFormControl.value) ? false : this.releaseFormControl.value.includes('windRelease');
-  }
-
-  get yinYangReleaseChosen() {
-    return this.checkIsNullorUndefined(this.releaseFormControl.value) ? false : this.releaseFormControl.value.includes('yinYangRelease');
-  }
 
   get bardChosen() {
     return this.checkIsNullorUndefined(this.spellFormControl.value) ? false : this.spellFormControl.value.includes('bardCanCast');
@@ -524,6 +267,4 @@ export class AbilitySearchComponent implements OnInit {
   checkIsNullorUndefined(item: unknown) {
     return item === null || item === undefined;
   }
-
-
 }
