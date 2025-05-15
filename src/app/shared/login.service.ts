@@ -14,7 +14,7 @@ export class LoginService {
     private router: Router
   ) { }
 
-  login(username, password) {
+  login(username: string, password: string) {
     return this.http.post<any>(environment.apiUrl + '/login', { username, password });
   }
 

@@ -60,7 +60,7 @@ export class InitiativeTableComponent implements OnInit, OnChanges, AfterViewIni
     }
   }
 
-  openHealthDialog(creature) {
+  openHealthDialog(creature: IInitiative) {
     const dialogConfig = new MatDialogConfig();
     
     dialogConfig.width = '750px';

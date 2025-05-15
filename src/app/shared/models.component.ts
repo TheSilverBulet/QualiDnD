@@ -123,8 +123,8 @@ export interface ISpellSlot {
 
 export interface IAttrUpdate {
   attributeKey: string;
-  attributeValue: any;
-  creature: any;
+  attributeValue: number;
+  creature: IInitiative;
 }
 
 export interface ISpell {
