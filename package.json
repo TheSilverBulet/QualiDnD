@@ -1,13 +1,13 @@
 {
   "name": "quali-dn-d",
-  "version": "0.0.0",
+  "version": "5.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:QualiDnD": "node dist/quali-dn-d/server/server.mjs"
+    "serve:ssr:QualiDnD": "node dist/qdnd/server/server.mjs"
   },
   "private": true,
   "dependencies": {
