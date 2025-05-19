@@ -1,2 +1,23 @@
-<p>login works!</p>
-<img ngSrc="img/dungeons-dragons-logo.jpg" alt="logoAlt" width="300" height="116" />
+<div class="center-div" style="padding-top: 5%;">
+    <mat-card appearance="outlined" >
+        <mat-card-content>
+            <form>
+                <mat-form-field style="width: auto;">
+                    <mat-label>Username</mat-label>
+                    <input type="email" matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher"
+                        placeholder="Username">
+                </mat-form-field>
+                <br />
+                <mat-form-field style="width: auto;">
+                    <mat-label>Password</mat-label>
+                    <input type="email" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
+                        placeholder="Password">
+                </mat-form-field>
+            </form>
+            <button mat-raised-button (onclick)="login()">Login</button>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="center-div">
+    <img ngSrc="img/dungeons-dragons-logo.png" alt="logoAlt" width="512" height="256" />
+</div>
