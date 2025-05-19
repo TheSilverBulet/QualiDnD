@@ -1,16 +1,21 @@
 <mat-toolbar color="primary">
-    <span [ngStyle]="{'font-size': '30px', 'font-weight': 'bold'}">QualiDnD</span>
+    <span [style]="{'font-size': '30px', 'font-weight': 'bold'}">QualiDnD</span>
     <span class="main-user-login-menu"></span>
-    <button mat-button [@if]="isLoggedIn"><i class="material-icons" (click)="toDashboard()">home</i></button>
+    @if (isLoggedIn) {
+        <button mat-button><i class="material-icons" (click)="toDashboard()">home</i></button>
+    }
 
     <mat-menu #settingsMenu="matMenu" yPosition="below">
         <button mat-menu-item (click)="toUser()">My Account</button>
-        <button mat-menu-item [@if]='isAdmin' (click)="toAdmin()">Administration</button>
+        @if (isAdmin) {
+            <button mat-menu-item (click)="toAdmin()">Administration</button>
+        }
         <button mat-menu-item (click)="openDiceRoller()">Dice Roller</button>
         <button mat-menu-item (click)="openReferenceDialog()">Reference</button>
         <!--<button mat-menu-item *ngIf='isAdmin' (click)="toEncounterCalculator()">Encounter Calculator</button>-->
         <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
-    <button mat-button [matMenuTriggerFor]="settingsMenu" [@if]="isLoggedIn"><i class="material-icons">person</i>
-        {{ username }}</button>
+    @if (isLoggedIn) {
+        <button mat-button [matMenuTriggerFor]="settingsMenu"><i class="material-icons">person</i>{{ username }} </button>
+    }
 </mat-toolbar>
