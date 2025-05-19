@@ -16,14 +16,15 @@ export const routes: Routes = [
         title: "Register"
     },
     {
-        path: "",
+        path: "dashboard",
         component: DashboardComponent,
+        title: "Dashboard",
         canActivate: [authGuard]
     },
     {
-        path: "dashboard",
+        path: "",
         component: DashboardComponent,
-        canActivate: [authGuard],
-        title: "Dashboard"
-    }
+        title: "Home",
+        canActivate: [authGuard]
+    },
 ];
