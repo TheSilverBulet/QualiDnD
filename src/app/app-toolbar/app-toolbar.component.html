@@ -1,10 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="primary">
     <span [style]="{'font-size': '30px', 'font-weight': 'bold'}">QualiDnD</span>
     <span class="main-user-login-menu"></span>
     @if (isLoggedIn) {
         <button mat-button><i class="material-icons" (click)="toDashboard()">home</i></button>
     }
 
+    <!-- This is the menu, only accessible when logged in-->
     <mat-menu #settingsMenu="matMenu" yPosition="below">
         <button mat-menu-item (click)="toUser()">My Account</button>
         @if (isAdmin) {

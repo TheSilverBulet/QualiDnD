@@ -1,23 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
+
 @use '@angular/material' as mat;
-@use "./_theme-colors.scss" as theme-colors;
 
-
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html,
-body {
-    @include mat.theme((color: (primary: theme-colors.$primary-palette,
-                tertiary: theme-colors.$tertiary-palette,
-            ),
+html {
+    color-scheme: light dark; // add color-scheme css property
+    @include mat.theme((color: mat.$spring-green-palette,
             typography: Roboto,
-            density: 0,
+            density: 0), $overrides: (surface: light-dark(#fefbff, #211f21), // override system variable
+            on-surface: light-dark(#1c1b1d, #e6e1e3), // override system variable
         ));
 }
 
+html,
 body {
-    background: var(--mat-sys-surface);
+    height: 100%;
+}
+
+body {
+    // Add default background and text colors
+    background: var(--mat-sys-surface); // using system variables
     color: var(--mat-sys-on-surface);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
 }

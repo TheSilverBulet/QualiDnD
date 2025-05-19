@@ -13,4 +13,5 @@ export interface IUserRegistration extends IUser{
 
 export interface LoggedInUser extends IUser {
     activeCharacter: ICharacter | null;
+    role: string;
 }
