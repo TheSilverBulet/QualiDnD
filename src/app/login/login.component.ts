@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import {
   FormControl,
   FormGroupDirective,
+  FormGroup,
   NgForm,
   Validators,
   FormsModule,
@@ -42,17 +43,15 @@ export class LoginComponent implements OnInit{
 
   }
 
-  usernameFormControl: FormControl = new FormControl('', [Validators.required]);
-  passwordFormControl: FormControl = new FormControl('', [Validators.required]);
+  loginForm: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  })
 
   matcher: ErrorStateMatcher = new LoginErrorStateMatcher();
 
   clear() {
-    console.log("Trying to clear vals!");
-    this.usernameFormControl.patchValue('');
-    this.usernameFormControl.markAsUntouched()
-    this.passwordFormControl.patchValue('');
-    this.passwordFormControl.markAsUntouched();
+    this.loginForm.reset();
   }
 
   login() {

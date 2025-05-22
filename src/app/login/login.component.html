@@ -1,21 +1,21 @@
 <div class="center-div">
     <mat-card appearance="outlined" class="login-card">
         <mat-card-content>
-            <form>
+            <form [formGroup]="loginForm">
                 <mat-form-field class="login-field">
                     <mat-label>Username</mat-label>
-                    <input type="email" matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher"
+                    <input type="email" matInput formControlName="username" [errorStateMatcher]="matcher"
                         placeholder="Username">
                 </mat-form-field>
                 <br />
                 <mat-form-field class="login-field">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
+                    <input type="password" matInput formControlName="password" [errorStateMatcher]="matcher"
                         placeholder="Password">
                 </mat-form-field>
             </form>
-            <button class="left-align-button" mat-flat-button class="tertiary" (onclick)="clear()">Clear</button>
-            <button class="right-align-button" mat-flat-button (onclick)="login()">Login</button>
+            <button class="left-align-button" mat-flat-button class="tertiary" (click)="clear()">Clear</button>
+            <button [disabled]="!loginForm.valid" type="submit" class="right-align-button" mat-flat-button (ngSubmit)="login()">Login</button>
         </mat-card-content>
     </mat-card>
 </div>
