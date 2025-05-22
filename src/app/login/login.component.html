@@ -1,20 +1,20 @@
 <div class="center-div" style="padding-top: 5%;">
-    <mat-card appearance="outlined" >
+    <mat-card appearance="outlined" class="login-card">
         <mat-card-content>
             <form>
-                <mat-form-field style="width: auto;">
+                <mat-form-field class="login-field">
                     <mat-label>Username</mat-label>
                     <input type="email" matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher"
                         placeholder="Username">
                 </mat-form-field>
                 <br />
-                <mat-form-field style="width: auto;">
+                <mat-form-field class="login-field">
                     <mat-label>Password</mat-label>
-                    <input type="email" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
+                    <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
                         placeholder="Password">
                 </mat-form-field>
             </form>
-            <button mat-raised-button (onclick)="login()">Login</button>
+            <button class="right-align-button" mat-flat-button (onclick)="login()">Login</button>
         </mat-card-content>
     </mat-card>
 </div>
