@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
@@ -27,9 +28,9 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
 
 @Component({
   selector: 'app-login',
-  imports: [NgOptimizedImage, MatCardModule, FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule],
+  imports: [NgOptimizedImage, MatCardModule, FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatIconModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: '../shared-styles/login-styles.scss'
 })
 export class LoginComponent implements OnInit{
 
@@ -46,8 +47,7 @@ export class LoginComponent implements OnInit{
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
-  })
-
+  });
   matcher: ErrorStateMatcher = new LoginErrorStateMatcher();
 
   clear() {
@@ -55,7 +55,11 @@ export class LoginComponent implements OnInit{
   }
 
   login() {
+    console.log(this.loginForm.value)
+  }
 
+  register() {
+    this.router.navigate(['register']);
   }
 
 }
