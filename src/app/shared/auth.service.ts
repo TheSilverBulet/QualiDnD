@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { LoggedInUser } from '../user.interfaces';
 
 @Injectable({
@@ -13,17 +13,21 @@ export class AuthService {
   }
 
   public get isAdmin(): boolean {
-    if (this.loggedIn) {
+    if (this.loggedIn && this.getUser) {
       return this.getUser.role === 'ADMIN';
     }
     return false;
   }
 
   public get getLoggedInUsername(): string {
-    return this.getUser.username;
+    if (this.getUser){
+      return this.getUser.username;
+    }
+    return '';
   }
 
-  private get getUser(): LoggedInUser {
-    return JSON.parse(sessionStorage.getItem('currentUser') as string);
+  //TODO: FIX
+  private get getUser(): LoggedInUser | null{
+    return null;
   }
 }

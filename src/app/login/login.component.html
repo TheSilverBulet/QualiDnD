@@ -1,4 +1,4 @@
-<div class="center-div" style="padding-top: 5%;">
+<div class="center-div">
     <mat-card appearance="outlined" class="login-card">
         <mat-card-content>
             <form>
@@ -14,6 +14,7 @@
                         placeholder="Password">
                 </mat-form-field>
             </form>
+            <button class="left-align-button" mat-flat-button class="tertiary" (onclick)="clear()">Clear</button>
             <button class="right-align-button" mat-flat-button (onclick)="login()">Login</button>
         </mat-card-content>
     </mat-card>

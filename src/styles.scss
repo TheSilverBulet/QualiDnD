@@ -5,7 +5,9 @@
 html {
     color-scheme: light dark; // add color-scheme css property
     @include mat.theme((
-        color: mat.$spring-green-palette,
+        color: (
+            primary: mat.$spring-green-palette
+        ),
         typography: Roboto,
         density: 0
     ), $overrides: (
@@ -40,6 +42,10 @@ body {
     --mdc-filled-button-disabled-label-text-color: light-dark(#9e9e9e, #757575); // Disabled text
 }
 
+.left-align-button {
+    float: left;
+}
+
 .right-align-button {
-    float:right;
+    float: right;
 }

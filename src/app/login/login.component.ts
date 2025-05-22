@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import {
@@ -13,6 +13,8 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { UserService } from '../shared/user.service';
+import { Router } from '@angular/router';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
@@ -28,15 +30,33 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+
+  ngOnInit(): void {
+  }
+
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {
+
+  }
 
   usernameFormControl: FormControl = new FormControl('', [Validators.required]);
   passwordFormControl: FormControl = new FormControl('', [Validators.required]);
 
   matcher: ErrorStateMatcher = new LoginErrorStateMatcher();
 
+  clear() {
+    console.log("Trying to clear vals!");
+    this.usernameFormControl.patchValue('');
+    this.usernameFormControl.markAsUntouched()
+    this.passwordFormControl.patchValue('');
+    this.passwordFormControl.markAsUntouched();
+  }
+
   login() {
-    
+
   }
 
 }
