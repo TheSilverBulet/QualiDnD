@@ -1,4 +1,11 @@
-import { ICharacter } from "./character.interfaces";
+import { Character, ICharacter } from "./character.interfaces";
+
+export const SESSION_USER = 'current_user';
+
+export enum Role {
+    USER,
+    ADMIN
+}
 
 export interface IUser {
     username: string;
@@ -11,7 +18,21 @@ export interface IUserRegistration extends IUser{
     password: string;
 }
 
-export interface LoggedInUser extends IUser {
+export interface ILoggedInUser extends IUser {
     activeCharacter: ICharacter | null;
-    role: string;
+    role: Role;
+}
+
+export class LoggedInUser implements ILoggedInUser {
+    username = '';
+    firstname = '';
+    lastname = '';
+    email = '';
+    activeCharacter = new Character();
+    role = Role.USER;
+}
+
+export interface ILoginResponse {
+    success: boolean;
+    activeUser: ILoggedInUser;
 }

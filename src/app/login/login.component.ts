@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { IUserRegistration } from '../user.interfaces';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
@@ -55,7 +56,12 @@ export class LoginComponent implements OnInit{
   }
 
   login() {
-    console.log(this.loginForm.value)
+    let success = this.userService.login(this.loginForm.value as IUserRegistration);
+    if (success){
+      this.router.navigate(['dashboard']);
+    } else {
+      
+    }
   }
 
   register() {
